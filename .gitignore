@@ -62,3 +62,5 @@ typings/
 
 # intellij
 .idea
+
+config/dev.env
