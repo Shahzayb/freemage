@@ -1,6 +1,6 @@
 {
   "name": "freemage",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Image sharing app",
   "private": true,
   "scripts": {
@@ -20,6 +20,7 @@
   },
   "main": "app.js",
   "devDependencies": {
+    "dotenv": "^8.0.0",
     "nodemon": "^1.19.1"
   },
   "keywords": [
