@@ -18,8 +18,7 @@ async function getImagesThumbnail(page = 1, size = 8) {
   return await Image.find(
     {},
     {
-      thumbnail: 1,
-      thumbnailMime: 1
+      thumbnail: 1
     }
   )
     .sort({ _id: -1 })
@@ -27,20 +26,17 @@ async function getImagesThumbnail(page = 1, size = 8) {
     .limit(size);
 }
 
-async function saveImage(thumbnail, image, imageMime) {
+async function saveImage(thumbnail, image) {
   image = new Image({
     thumbnail,
-    thumbnailMime: 'image/png',
-    image,
-    imageMime
+    image
   });
   return await image.save();
 }
 
 async function getImageById(id) {
   return await Image.findById(id, {
-    image: 1,
-    imageMime: 1
+    image: 1
   });
 }
 

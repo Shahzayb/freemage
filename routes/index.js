@@ -3,6 +3,9 @@ const multer = require('multer');
 const sharp = require('sharp');
 const isImage = require('is-image');
 const imageRepo = require('../models/index');
+const cloudinaryUpload = require('../middleware/cloudinaryUpload');
+const bufferToDataUri = require('../middleware/bufferToDataUri');
+const makeThumbnail = require('../middleware/makeThumbnail');
 
 const router = express.Router();
 
@@ -14,27 +17,26 @@ const upload = multer({
     cb(undefined, true);
   },
   limits: {
-    fileSize: 1.4e7 // 14 mb
+    fileSize: 5e7 // 50 mb
   }
 });
 
-router.post('/images', upload.single('image'), async (req, res, next) => {
-  try {
-    if (req.file.size <= 0) {
-      return res.status(400).send('invalid file size');
+router.post(
+  '/images',
+  upload.single('image'),
+  makeThumbnail,
+  bufferToDataUri,
+  cloudinaryUpload,
+  async (req, res, next) => {
+    try {
+      await imageRepo.saveImage(req.thumbnail, req.image);
+      res.status(201).send();
+    } catch (e) {
+      console.error(e);
+      return res.status(500).send();
     }
-    const thumbnail = await sharp(req.file.buffer)
-      .resize(400, 400)
-      .png()
-      .toBuffer();
-
-    await imageRepo.saveImage(thumbnail, req.file.buffer, req.file.mimetype);
-    res.status(201).send();
-  } catch (e) {
-    console.error(e);
-    return res.status(500).send();
   }
-});
+);
 
 router.get('/images/thumbnail', async (req, res, next) => {
   try {
