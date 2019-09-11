@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const ImageSchema = new mongoose.Schema({
-  thumbnail: {
+  src: {
     type: String,
     required: true
   },
-  image: {
+  srcset: {
     type: String,
     required: true
   }

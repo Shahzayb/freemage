@@ -15,28 +15,28 @@ body {
   width: 100vw;
   position: fixed;
   top: 0px;
-  left: 0px;
   z-index: 2;
+  background-color: #fff;
 }
 
 .navbar {
   width: 90vw;
   margin: 0 auto;
   list-style: none;
-  height: 80px;
+  height: 65px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .brand-logo {
-  background-image: url('./assets/logo.svg');
+  background-image: url('./assets/images/logo.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin-right: 1rem;
 }
 
@@ -57,21 +57,23 @@ a:focus {
 }
 
 .nav-link {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .hero {
   position: relative;
+  margin-top: 65px;
   min-height: 400px;
   height: 70vh;
   width: 100vw;
-  background-image: url('./assets/hero.jpg');
+  background-image: url('./assets/images/hero.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
+  object-fit: cover;
 }
 
 .hero::after {
