@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -20,15 +21,17 @@ class Navbar extends React.Component {
       <nav className="nav-container" ref={this.nav}>
         <ul className="navbar">
           <li>
-            <a href="#!" className="brand nav-link">
+            <Link to="/" className="brand nav-link">
               <i className="brand-logo"></i>
               <span className="brand-name">Freemage</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#!" className="nav-link">
+            <Link
+              to={{ pathname: '/upload', state: { modal: true } }}
+              className="nav-link">
               Upload
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

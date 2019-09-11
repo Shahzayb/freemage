@@ -1,11 +1,13 @@
 {
   "name": "freemage",
-  "version": "0.1.3",
+  "version": "0.1.0",
   "description": "Image sharing app",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "concurrently \"nodemon ./bin/www\" \"cd client && npm start\""
+    "client": "npm start --prefix client",
+    "server": "nodemon ./bin/www",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
     "cloudinary": "^1.14.0",

@@ -95,7 +95,7 @@ a:focus {
 }
 
 .grid {
-  margin: 100px 10px;
+  margin: 100px 10px 10px 10px;
   columns: 3;
   column-gap: 10px;
 }
@@ -112,20 +112,12 @@ a:focus {
 }
 
 @media (max-width: 992px) {
-  .container {
-    max-width: 992px;
-  }
-
   .grid {
     columns: 2;
   }
 }
 
 @media (max-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-
   .grid {
     columns: 1;
   }
