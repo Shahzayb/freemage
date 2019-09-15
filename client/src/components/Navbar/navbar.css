@@ -1,0 +1,45 @@
+.nav-container {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  background-color: #fff;
+}
+
+.navbar {
+  width: 90vw;
+  margin: 0 auto;
+  list-style: none;
+  height: 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  background-image: url('../../assets/images/logo.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #000000;
+}
+
+.nav-link {
+  font-size: 18px;
+  text-decoration: none;
+  color: #3c4652;
+  transition: color 0.3s ease-in-out;
+}

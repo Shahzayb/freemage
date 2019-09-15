@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './gallery.css';
 
 export class Gallery extends Component {
   render() {
     return (
       <div className="grid">
         <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=1" alt="" />
+          <Link to={{ pathname: '/image/1', state: { modal: true } }}>
+            <img src="https://source.unsplash.com/random?sig=1" alt="" />
+          </Link>
         </div>
         <div className="grid-item">
           <img src="https://source.unsplash.com/random/sig=2" alt="" />

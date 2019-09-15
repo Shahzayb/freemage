@@ -1,0 +1,28 @@
+.grid {
+  margin: 100px 10px 10px 10px;
+  columns: 3;
+  column-gap: 10px;
+}
+
+.grid .grid-item {
+  width: 100%;
+  break-inside: auto;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.grid .grid-item img {
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .grid {
+    columns: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    columns: 1;
+  }
+}
