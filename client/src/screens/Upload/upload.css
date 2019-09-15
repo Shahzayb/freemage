@@ -1,0 +1,91 @@
+.container {
+  padding: 1rem;
+}
+
+.dropzone {
+  border: 2px dashed rgb(219, 219, 219);
+  padding: 1rem;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  grid-template-areas:
+    'top'
+    'bottom';
+}
+
+.dropzone:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.full-dropzone {
+  height: 70vh;
+}
+
+.command {
+  grid-area: top;
+  justify-self: center;
+  align-self: center;
+}
+
+.upload-icon img {
+  display: block;
+  object-fit: contain;
+  margin: auto;
+}
+
+.upload-icon-big img {
+  width: 150px;
+  height: 150px;
+}
+
+.upload-icon-small img {
+  width: 70px;
+  height: 70px;
+}
+
+ul.policies {
+  grid-area: bottom;
+  column-count: 3;
+  align-self: flex-end;
+  justify-self: center;
+}
+
+ul.policies li {
+  padding-left: 0.5rem;
+  margin: 0.4rem 0 0 1rem;
+}
+
+.thumb {
+  margin-top: 0.5rem;
+  width: 40vw;
+}
+
+.footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgb(243, 243, 243);
+  text-align: right;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.small-screen {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .thumb {
+    width: 100%;
+  }
+
+  .small-screen {
+    display: block;
+  }
+
+  .big-screen {
+    display: none;
+  }
+}
