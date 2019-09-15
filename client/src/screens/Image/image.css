@@ -1,0 +1,39 @@
+header {
+  display: block;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 5px 5px 0 0;
+  overflow: auto;
+}
+
+.download-btn {
+  float: right;
+}
+
+.download-btn > #symbol {
+  display: none;
+}
+
+.download-btn > #text {
+  display: inline;
+}
+
+.arrow-down img {
+  display: block;
+  width: 20px;
+  height: 25px;
+}
+
+@media screen and (max-width: 767px) {
+  .download-btn > #symbol {
+    display: block;
+  }
+
+  .download-btn > #text {
+    display: none;
+  }
+
+  header {
+    padding: 0.5rem;
+  }
+}
