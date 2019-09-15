@@ -12,16 +12,12 @@
   "dependencies": {
     "cloudinary": "^1.14.0",
     "concurrently": "^4.1.2",
-    "cors": "^2.8.5",
     "datauri": "^2.0.0",
     "debug": "^2.6.9",
     "express": "^4.16.4",
-    "is-image": "^3.0.0",
     "mongoose": "^5.6.9",
     "morgan": "^1.9.1",
-    "multer": "^1.4.2",
-    "sharp": "^0.22.1",
-    "strong-error-handler": "^3.2.0"
+    "multer": "^1.4.2"
   },
   "main": "app.js",
   "devDependencies": {
