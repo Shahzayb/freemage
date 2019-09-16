@@ -1,11 +1,11 @@
 import React from 'react';
-import Freemage from './components/Freemage';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ModalSwitch from './components/ModalSwitch';
 
 function App() {
   return (
     <Router>
-      <Freemage />
+      <Route component={ModalSwitch} />
     </Router>
   );
 }
