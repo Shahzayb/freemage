@@ -7,7 +7,7 @@ import './image.css';
 const Image = props => {
   return (
     <>
-      <header>
+      <header className="header">
         <Button title="Download" className="download-btn">
           <span id="text">Download free</span>
           <i id="symbol" className="arrow-down">

@@ -1,5 +1,6 @@
 .container {
   padding: 1rem;
+  overflow: auto;
 }
 
 .dropzone {

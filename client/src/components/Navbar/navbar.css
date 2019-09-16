@@ -1,13 +1,13 @@
 .nav-container {
-  width: 100vw;
   position: fixed;
   top: 0;
-  z-index: 2;
+  left: 0;
+  right: 0;
   background-color: #fff;
 }
 
 .navbar {
-  width: 90vw;
+  width: 90%;
   margin: 0 auto;
   list-style: none;
   height: 65px;
