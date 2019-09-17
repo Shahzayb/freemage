@@ -9,12 +9,14 @@ cloudinary.config({
 const cloudinaryUpload = async (req, res, next) => {
   try {
     const result = await cloudinary.uploader.upload(req.file, {
+      moderation: 'webpurify',
+      notification_url: 'https://env5fi3zsmad.x.pipedream.net/', // 3rd party webhook endpoint
       folder: 'freemage',
       responsive_breakpoints: {
         create_derived: false,
         bytes_step: 20000,
         min_width: 200,
-        max_width: 1800,
+        max_width: 2000,
         transformation: {
           crop: 'fit'
         }
@@ -31,6 +33,7 @@ const cloudinaryUpload = async (req, res, next) => {
 
     req.body.srcset = srcset.replace(/,$/, '');
     req.body.src = result.secure_url;
+    req.body.pending = true;
 
     next();
   } catch (e) {

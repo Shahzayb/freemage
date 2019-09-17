@@ -8,6 +8,10 @@ const ImageSchema = new mongoose.Schema({
   srcset: {
     type: String,
     required: true
+  },
+  pendingModeration: {
+    type: Boolean,
+    required: true
   }
 });
 

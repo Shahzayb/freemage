@@ -7,25 +7,20 @@ const bufferToDataUri = require('../middlewares/bufferToDataUri');
 
 const router = express.Router();
 
-const upload = multer({
-  fileFilter(req, file, cb) {
-    if (!file.mimetype.match(/^image\/jpe?g$/)) {
-      return cb(new Error('invalid file'));
-    }
-    cb(null, true);
-  },
-  limits: {
-    fileSize: 5e7 // 50 mb
-  }
-});
+const upload = multer();
 
 router.post(
   '/',
   [
     upload.single('image'),
     (req, res, next) => {
-      if (req.file.size <= 0) {
-        return res.status(400).send('invalid file size');
+      if (!req.file.mimetype.match(/^image\/jpe?g$/)) {
+        // return res.status(422).send('invalid file type');
+      } else if (req.file.buffer.length >= 5e7) {
+        // if greater than 50mb
+        return res.status(422).send('file is too large');
+      } else if (req.file.size <= 0) {
+        return res.status(422).send('invalid file size');
       }
       next();
     },
@@ -36,5 +31,7 @@ router.post(
 );
 
 router.get('/', imageController.getImages);
+
+router.post('/moderation-hook', imageController.postModerationHook);
 
 module.exports = router;

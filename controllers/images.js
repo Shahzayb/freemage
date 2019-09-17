@@ -23,7 +23,8 @@ exports.postImage = async (req, res, next) => {
   try {
     const image = new Image({
       src: req.body.src,
-      srcset: req.body.srcset
+      srcset: req.body.srcset,
+      pendingModeration: req.body.pending
     });
 
     await image.save();
@@ -33,3 +34,5 @@ exports.postImage = async (req, res, next) => {
     res.status(500).send();
   }
 };
+
+exports.postModerationHook = (req, res, next) => {};

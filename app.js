@@ -19,6 +19,7 @@ app.use((req, res) => {
 
 // generic global error handler
 app.use((err, req, res) => {
+  console.log('error');
   res.status(500).send();
 });
 
