@@ -33,7 +33,7 @@
     display: none;
   }
 
-  header {
+  .header {
     padding: 0.5rem;
   }
 }

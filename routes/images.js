@@ -32,6 +32,6 @@ router.post(
 
 router.get('/', imageController.getImages);
 
-router.post('/moderation-hook', imageController.postModerationHook);
+router.post('/hook', imageController.postImageHook);
 
 module.exports = router;
