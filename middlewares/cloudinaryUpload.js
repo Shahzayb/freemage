@@ -9,31 +9,24 @@ cloudinary.config({
 const cloudinaryUpload = async (req, res, next) => {
   try {
     const result = await cloudinary.uploader.upload(req.file, {
-      moderation: 'webpurify',
-      notification_url: 'https://env5fi3zsmad.x.pipedream.net/', // 3rd party webhook endpoint
+      moderation: 'aws_rek',
+      categorization: 'aws_rek_tagging',
+      auto_tagging: 0.5,
+      notification_url: 'https://enikamgrvtodd.x.pipedream.net/', // 3rd party webhook endpoint
       folder: 'freemage',
+
       responsive_breakpoints: {
         create_derived: false,
-        bytes_step: 20000,
+        bytes_step: 2000,
         min_width: 200,
-        max_width: 2000,
+        max_width: 2500,
         transformation: {
           crop: 'fit'
         }
       }
     });
 
-    let srcset = '';
-
-    // generate 'srcset' string from breakpoints
-
-    for (let breakpoint of result.responsive_breakpoints[0].breakpoints) {
-      srcset += breakpoint.secure_url + ` ${breakpoint.width}w,`;
-    }
-
-    req.body.srcset = srcset.replace(/,$/, '');
-    req.body.src = result.secure_url;
-    req.body.pending = true;
+    req.body.publicId = result.public_id;
 
     next();
   } catch (e) {

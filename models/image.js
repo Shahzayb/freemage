@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const ImageSchema = new mongoose.Schema({
+  publicId: {
+    type: String,
+    required: true
+  },
   src: {
     type: String,
     required: true
@@ -9,10 +13,7 @@ const ImageSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  pendingModeration: {
-    type: Boolean,
-    required: true
-  }
+  tags: [{ type: String }]
 });
 
 const Image = mongoose.model('Image', ImageSchema);
