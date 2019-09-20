@@ -3,14 +3,14 @@ const PendingImage = require('../models/PendingImage');
 const generateSrcset = require('../utils/generateSrcset');
 
 exports.getImages = async (req, res, next) => {
-  const page = +(req.params.page || 1);
+  const page = +(req.query.page || 1);
   const size = 10;
   if (!page) {
     return res.status(400).send('invalid page number');
   }
   const skip = size * (page - 1);
   try {
-    const images = await User.find({})
+    const images = await Image.find({})
       .sort({ _id: -1 })
       .skip(skip)
       .limit(size);
@@ -63,12 +63,26 @@ exports.postImageHook = async (req, res, next) => {
 
         return res.status(201).send(image);
       } else {
-        // remove the image & notify the user that is image is approved
+        // remove the image & notify the user that is image is not approved
         await pendingImage.remove();
         return res.status(422).send('image is not approved');
       }
     }
     res.end();
+  } catch (e) {
+    console.error(e);
+    res.status(500).send();
+  }
+};
+
+exports.postImageDownloads = async (req, res) => {
+  const _id = req.body._id;
+  if (!_id) {
+    return res.status(422).send('id is required');
+  }
+  try {
+    await Image.findByIdAndUpdate({ _id }, { $inc: { downloads: 1 } });
+    return res.send();
   } catch (e) {
     console.error(e);
     res.status(500).send();

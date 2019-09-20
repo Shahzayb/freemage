@@ -11,18 +11,16 @@ const cloudinaryUpload = async (req, res, next) => {
     const result = await cloudinary.uploader.upload(req.file, {
       moderation: 'aws_rek',
       categorization: 'aws_rek_tagging',
-      auto_tagging: 0.5,
-      notification_url: 'https://enikamgrvtodd.x.pipedream.net/', // 3rd party webhook endpoint
+      auto_tagging: 0.6,
+      notification_url: 'https://enzx33p6p16r8.x.pipedream.net/', // 3rd party webhook endpoint
       folder: 'freemage',
 
       responsive_breakpoints: {
-        create_derived: false,
-        bytes_step: 2000,
+        create_derived: true,
+        bytes_step: 1000,
         min_width: 200,
         max_width: 2500,
-        transformation: {
-          crop: 'fit'
-        }
+        max_images: 30
       }
     });
 
