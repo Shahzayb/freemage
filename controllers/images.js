@@ -75,14 +75,17 @@ exports.postImageHook = async (req, res, next) => {
   }
 };
 
-exports.postImageDownloads = async (req, res) => {
-  const _id = req.body._id;
-  if (!_id) {
-    return res.status(422).send('id is required');
-  }
+exports.patchImageDownloads = async (req, res) => {
+  const _id = req.params.id;
+  const action = req.query.action;
   try {
-    await Image.findByIdAndUpdate({ _id }, { $inc: { downloads: 1 } });
-    return res.send();
+    switch (action) {
+      case 'download':
+        await Image.findByIdAndUpdate({ _id }, { $inc: { downloads: 1 } });
+        return res.send();
+      default:
+        return res.status(422).send('invalid action');
+    }
   } catch (e) {
     console.error(e);
     res.status(500).send();
