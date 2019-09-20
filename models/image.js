@@ -13,7 +13,12 @@ const ImageSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  tags: [{ type: String }]
+  tags: [{ type: String }],
+  downloads: {
+    type: Number,
+    default: 0,
+    required: true
+  }
 });
 
 const Image = mongoose.model('Image', ImageSchema);
