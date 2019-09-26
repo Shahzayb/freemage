@@ -12,6 +12,7 @@
   "dependencies": {
     "cloudinary": "^1.14.0",
     "concurrently": "^4.1.2",
+    "cors": "^2.8.5",
     "datauri": "^2.0.0",
     "debug": "^2.6.9",
     "express": "^4.16.4",

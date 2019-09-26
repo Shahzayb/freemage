@@ -7,10 +7,9 @@
 }
 
 .navbar {
-  width: 90%;
+  width: 96%;
   margin: 0 auto;
-  list-style: none;
-  height: 65px;
+  height: 6.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,8 +21,8 @@
   background-repeat: no-repeat;
   background-size: contain;
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 4rem;
+  height: 4rem;
   margin-right: 1rem;
 }
 
@@ -32,13 +31,22 @@
   align-items: center;
 }
 
+.nav {
+  list-style: none;
+}
+
+.nav li {
+  margin-left: 3rem;
+  display: inline-block;
+}
+
 .nav-link:hover,
 .nav-link:focus {
   color: #000000;
 }
 
 .nav-link {
-  font-size: 16px;
+  font-size: 1.6rem;
   text-decoration: none;
   color: #3c4652;
   transition: color 0.3s ease-in-out;

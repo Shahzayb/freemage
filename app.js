@@ -1,16 +1,20 @@
 const express = require('express');
-const path = require('path');
+const cors = require('cors');
 const logger = require('morgan');
 require('./data/index'); // connecting to database
 
 const imagesRoute = require('./routes/images');
+const authRouter = require('./routes/auth');
 
 const app = express();
+
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());
 
 app.use('/api/images/', imagesRoute);
+app.use('/api/auth/', authRouter);
 
 // generic 404
 app.use((req, res) => {
