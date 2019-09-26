@@ -73,6 +73,7 @@ function Upload(props) {
       <aside>{thumb}</aside>
       <footer className="footer">
         <Button
+          className="upload-btn"
           disabled={file ? false : true}
           style={file ? {} : { cursor: 'not-allowed' }}>
           Upload

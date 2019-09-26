@@ -1,14 +1,14 @@
 .grid {
-  margin: 100px 10px 10px 10px;
+  margin: 10rem 1rem 1rem 1rem;
   columns: 3;
-  column-gap: 10px;
+  column-gap: 1rem;
 }
 
 .grid .grid-item {
   width: 100%;
   break-inside: auto;
   overflow: hidden;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
 }
 
 .grid .grid-item img {

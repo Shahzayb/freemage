@@ -1,0 +1,14 @@
+.login-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: #3c4652;
+  transition: color 0.3s ease-in-out;
+}
+
+.login-btn:hover,
+.login-btn:focus {
+  color: #000000;
+}

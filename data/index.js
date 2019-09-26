@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const DB_URL = process.env.DB_URL || 'mongodb://localhost/Freemage';
 
 mongoose.connect(DB_URL, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useCreateIndex: true
 });
 
 const db = mongoose.connection;

@@ -1,5 +1,5 @@
 .hero {
-  margin-top: 65px;
+  margin-top: 6.5rem;
   min-height: 400px;
   height: 70vh;
   width: 100%;
@@ -16,8 +16,8 @@
 .landing-text {
   color: #fff;
   font-weight: 600;
-  font-size: 40px;
-  width: 400px;
+  font-size: 4rem;
+  width: 40rem;
   letter-spacing: 0.04rem;
   text-shadow: 1px 1px 3px rgb(187, 187, 187);
 }
