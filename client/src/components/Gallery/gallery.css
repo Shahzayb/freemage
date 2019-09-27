@@ -1,28 +1,21 @@
-.grid {
-  margin: 10rem 1rem 1rem 1rem;
-  columns: 3;
-  column-gap: 1rem;
+.grid-container {
+  margin: 5rem 1rem 1rem 1rem;
 }
 
-.grid .grid-item {
-  width: 100%;
-  break-inside: auto;
-  overflow: hidden;
-  margin-bottom: 0.5rem;
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -1rem; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 1rem; /* gutter size */
+  background-clip: padding-box;
 }
 
-.grid .grid-item img {
-  width: 100%;
-}
-
-@media (max-width: 992px) {
-  .grid {
-    columns: 2;
-  }
-}
-
-@media (max-width: 768px) {
-  .grid {
-    columns: 1;
-  }
+/* Style your items */
+.my-masonry-grid_column > div {
+  /* change div to reference your elements you put in <Masonry> */
+  margin-bottom: 1rem;
 }

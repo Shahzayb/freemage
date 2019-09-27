@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Modal from './UI/Modal/Modal';
+import Modal from '../UI/Modal/Modal';
 import withMobileSize from '../hoc/withMobileSize';
 import Home from '../screens/Home/Home';
 import Image from '../screens/Image/Image';

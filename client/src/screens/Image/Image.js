@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../../components/UI/Button';
-import ImageZoomer from '../../components/UI/ImageZoomer/ImageZoomer';
+import Button from '../../UI/Button';
+import ImageZoomer from '../../UI/ImageZoomer/ImageZoomer';
 import arrow from '../../assets/images/arrow-down.svg';
 import './image.css';
 

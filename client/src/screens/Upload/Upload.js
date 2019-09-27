@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import Button from '../../components/UI/Button';
-import Thumb from '../../components/UI/Thumb/Thumb';
+import Button from '../../UI/Button';
+import Thumb from '../../UI/Thumb/Thumb';
 import uploadIconBig from '../../assets/images/upload-photo.png';
 import uploadIconSmall from '../../assets/images/upload-photo-small.png';
 import './upload.css';
