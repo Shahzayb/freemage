@@ -1,82 +1,43 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Masonry from 'react-masonry-css';
 import './gallery.css';
+
+const breakpointColumnsObj = {
+  default: 3,
+  992: 2,
+  768: 1
+};
 
 export class Gallery extends Component {
   render() {
-    return (
-      <div className="grid">
-        <div className="grid-item">
-          <Link to={{ pathname: '/image/1', state: { modal: true } }}>
-            <img src="https://source.unsplash.com/random?sig=1" alt="" />
+    let items = [];
+    for (let i = 0; i < 50; i++) {
+      items.push(
+        <div>
+          <Link
+            key={i}
+            to={{ pathname: `/image/${i}`, state: { modal: true } }}>
+            <img
+              style={{
+                width: '100%',
+                height: '100%'
+              }}
+              src={`https://source.unsplash.com/random?sig=${i}`}
+              alt=""
+            />
           </Link>
         </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random/sig=2" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=3" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=4" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=5" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=6" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=7" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=8" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=9" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=10" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=11" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=12" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=13" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=14" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=15" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=16" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=17" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=18" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=19" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=20" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=21" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=22" alt="" />
-        </div>
-        <div className="grid-item">
-          <img src="https://source.unsplash.com/random?sig=23" alt="" />
-        </div>
+      );
+    }
+    return (
+      <div className="grid-container">
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column">
+          {items}
+        </Masonry>
       </div>
     );
   }
