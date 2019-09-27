@@ -19,7 +19,7 @@ class ModalSwitch extends React.Component {
       <>
         <Switch location={isModal ? { pathname: '/' } : location}>
           <Route exact path="/" component={Home} />
-          <Route path="/image/:id" component={Image} />
+          <Route path="/images/:id" component={Image} />
         </Switch>
         <Route
           path="/upload"
@@ -31,7 +31,7 @@ class ModalSwitch extends React.Component {
         />
         {isModal ? (
           <Route
-            path="/image/:id"
+            path="/images/:id"
             render={props => (
               <Modal {...props}>
                 <Image></Image>
