@@ -29,13 +29,11 @@ router.post(
     bufferToDataUri,
     cloudinaryUpload
   ],
-  imageController.postImage
+  imageController.postPendingImage
 );
 
 router.get('/', imageController.getImages);
 
 router.post('/hook', imageController.postImageHook);
-
-router.patch('/:id', imageController.patchImageDownloads);
 
 module.exports = router;

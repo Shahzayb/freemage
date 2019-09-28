@@ -4,9 +4,9 @@ const generateSrcset = require('../utils/generateSrcset');
 
 exports.getImages = async (req, res, next) => {
   const page = +(req.query.page || 1);
-  const size = 10;
-  if (!page) {
-    return res.status(400).send('invalid page number');
+  const size = +(req.query.page || 20);
+  if (!page || !size || page <= 0 || size <= 0) {
+    return res.status(400).send('invalid page or size number');
   }
   const skip = size * (page - 1);
   try {
@@ -21,14 +21,15 @@ exports.getImages = async (req, res, next) => {
   }
 };
 
-exports.postImage = async (req, res, next) => {
+exports.postPendingImage = async (req, res, next) => {
   try {
+    // publicId is private until the image is approved
     const pendingImage = new PendingImage({
       publicId: req.body.publicId
     });
 
     await pendingImage.save();
-    res.status(201).send(pendingImage);
+    res.status(203).send();
   } catch (e) {
     console.log(e);
     res.status(500).send();
@@ -59,35 +60,17 @@ exports.postImageHook = async (req, res, next) => {
         });
 
         await image.save();
-        await pendingImage.remove();
 
-        return res.status(201).send(image);
+        // notify the user that the image is uploaded
       } else {
-        // remove the image & notify the user that is image is not approved
-        await pendingImage.remove();
-        return res.status(422).send('image is not approved');
+        // notify the user that is image is not approved
       }
+      await pendingImage.remove();
     }
     res.end();
   } catch (e) {
     console.error(e);
-    res.status(500).send();
-  }
-};
-
-exports.patchImageDownloads = async (req, res) => {
-  const _id = req.params.id;
-  const action = req.query.action;
-  try {
-    switch (action) {
-      case 'download':
-        await Image.findByIdAndUpdate({ _id }, { $inc: { downloads: 1 } });
-        return res.send();
-      default:
-        return res.status(422).send('invalid action');
-    }
-  } catch (e) {
-    console.error(e);
+    // notify the user that the server could not upload the image
     res.status(500).send();
   }
 };
