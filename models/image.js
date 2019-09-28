@@ -14,11 +14,6 @@ const ImageSchema = new mongoose.Schema({
     required: true
   },
   tags: [{ type: String }],
-  downloads: {
-    type: Number,
-    default: 0,
-    required: true
-  },
   ownerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
