@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
-import GoogleLogin from '../GoogleLogin';
 
 class Navbar extends React.Component {
   render() {
@@ -22,7 +21,9 @@ class Navbar extends React.Component {
               </Link>
             </li>
             <li>
-              <GoogleLogin />
+              <Link to="/login" className="nav-link">
+                Login
+              </Link>
             </li>
           </ul>
         </div>
