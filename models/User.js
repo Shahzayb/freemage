@@ -26,7 +26,8 @@ const UserSchema = new mongoose.Schema({
   profilePic: {
     type: String,
     required: true
-  }
+  },
+  likedImages: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Image' }]
 });
 
 UserSchema.virtual('images', {

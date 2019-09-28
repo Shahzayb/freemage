@@ -2,9 +2,10 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Modal from '../UI/Modal/Modal';
 import withMobileSize from '../hoc/withMobileSize';
-import Home from '../screens/Home/Home';
-import Image from '../screens/Image/Image';
-import Upload from '../screens/Upload/Upload';
+import Home from '../pages/Home/Home';
+import Image from '../pages/Image/Image';
+import Upload from '../pages/Upload/Upload';
+import Login from '../pages/Login/Login';
 
 class ModalSwitch extends React.Component {
   render() {
@@ -20,6 +21,7 @@ class ModalSwitch extends React.Component {
         <Switch location={isModal ? { pathname: '/' } : location}>
           <Route exact path="/" component={Home} />
           <Route path="/images/:id" component={Image} />
+          <Route path="/login" component={Login} />
         </Switch>
         <Route
           path="/upload"
