@@ -38,4 +38,8 @@ router.post('/hook', imageController.postImageHook);
 
 router.get('/:id', imageController.getImageById);
 
+router.patch('/:id/like', auth, imageController.likeImage);
+
+router.patch('/:id/unlike', auth, imageController.unlikeImage);
+
 module.exports = router;
