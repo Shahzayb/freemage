@@ -36,4 +36,6 @@ router.get('/', imageController.getImages);
 
 router.post('/hook', imageController.postImageHook);
 
+router.get('/:id', imageController.getImageById);
+
 module.exports = router;
