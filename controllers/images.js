@@ -37,7 +37,7 @@ exports.postPendingImage = async (req, res, next) => {
     });
 
     await pendingImage.save();
-    res.status(203).send();
+    res.status(202).send();
   } catch (e) {
     console.log(e);
     res.status(500).send();
@@ -51,7 +51,61 @@ exports.getImageById = async (req, res) => {
       return res.status(404).send('image not found');
     }
 
-    res.send(image);
+    res.send({ ...image, totalLikes: image.likedBy.length });
+  } catch (e) {
+    console.error(e);
+    res.status(500).send();
+  }
+};
+
+exports.likeImage = async (req, res) => {
+  try {
+    const image = await Image.findById(req.params.id);
+    if (!image) {
+      return res.status(404).send('image not found');
+    }
+
+    // req.user.id.constructor is String
+    // image.likedBy[0].constructor is ObjectID
+
+    if (!image.likedBy.includes(req.user.id)) {
+      image.likedBy.push(req.user.id);
+      req.user.likedImages.push(image.id);
+
+      await image.save();
+      await req.user.save();
+    }
+    image.likes = image.likedBy.length;
+    res.send({ image, totalLikes: image.likedBy.length });
+  } catch (e) {
+    console.error(e);
+    res.status(500).send();
+  }
+};
+
+exports.unlikeImage = async (req, res) => {
+  try {
+    const image = await Image.findById(req.params.id);
+    if (!image) {
+      return res.status(404).send('image not found');
+    }
+
+    // req.user.id.constructor is String
+    // image.likedBy[0].constructor is ObjectID
+
+    if (image.likedBy.includes(req.user.id)) {
+      image.likedBy = image.likedBy.filter(
+        userId => req.user.id.toString() !== userId.toString()
+      );
+      req.user.likedImages = req.user.likedImages.filter(
+        imageId => image.id.toString() !== imageId.toString()
+      );
+
+      await image.save();
+      await req.user.save();
+    }
+
+    res.send({ image, totalLikes: image.likedBy.length });
   } catch (e) {
     console.error(e);
     res.status(500).send();
