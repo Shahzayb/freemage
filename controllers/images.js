@@ -3,14 +3,22 @@ const PendingImage = require('../models/PendingImage');
 const generateSrcset = require('../utils/generateSrcset');
 
 exports.getImages = async (req, res, next) => {
-  const page = +(req.query.page || 1);
-  const size = +(req.query.page || 20);
-  if (!page || !size || page <= 0 || size <= 0) {
-    return res.status(400).send('invalid page or size number');
-  }
-  const skip = size * (page - 1);
   try {
-    const images = await Image.find({})
+    const page = +(req.query.page || 1);
+    const size = +(req.query.page || 20);
+    if (!page || !size || page <= 0 || size <= 0) {
+      return res.status(400).send('invalid page or size number');
+    }
+
+    const skip = size * (page - 1);
+    let selectQuery = {};
+
+    if (req.query.q) {
+      const keywords = req.query.q.split(' ');
+      selectQuery = { tags: { $in: keywords } };
+    }
+
+    const images = await Image.find(selectQuery)
       .sort({ _id: -1 })
       .skip(skip)
       .limit(size);
@@ -32,6 +40,20 @@ exports.postPendingImage = async (req, res, next) => {
     res.status(203).send();
   } catch (e) {
     console.log(e);
+    res.status(500).send();
+  }
+};
+
+exports.getImageById = async (req, res) => {
+  try {
+    const image = await Image.findById(req.params.id);
+    if (!image) {
+      return res.status(404).send('image not found');
+    }
+
+    res.send(image);
+  } catch (e) {
+    console.error(e);
     res.status(500).send();
   }
 };
