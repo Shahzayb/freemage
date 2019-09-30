@@ -1,6 +1,6 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
-import './google-login.css';
+import styles from './GoogleLogin.module.css';
 
 export default props => {
   const responseGoogle = async authResult => {
@@ -18,7 +18,7 @@ export default props => {
 
   return (
     <div>
-      <h1 className="login-heading">
+      <h1 className={styles['login-heading']}>
         Click this button to signin or signup with google
       </h1>
       <GoogleLogin
