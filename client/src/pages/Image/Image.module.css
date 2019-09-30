@@ -1,5 +1,8 @@
 .header {
-  display: block;
+  margin: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #fff;
   padding: 1rem;
   border-radius: 5px 5px 0 0;
@@ -7,7 +10,9 @@
 }
 
 .download-btn {
-  float: right;
+  font-size: 1.4rem;
+  padding: 0 1rem;
+  height: 3.2rem;
 }
 
 .download-btn > #symbol {
@@ -15,9 +20,7 @@
 }
 
 .download-btn > #text {
-  font-size: 1.6rem;
-  padding: 0.3rem 0.4rem;
-  display: inline;
+  display: inline-block;
 }
 
 .arrow-down img {

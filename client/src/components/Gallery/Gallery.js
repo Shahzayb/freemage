@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroller';
 
 import Masonry from 'react-masonry-css';
-import './gallery.css';
+import styles from './Gallery.module.css';
 
 const breakpointColumnsObj = {
   default: 3,
@@ -52,16 +52,12 @@ export class Gallery extends Component {
         pageStart={0}
         loadMore={this.loadImages.bind(this)}
         hasMore={true}
-        loader={
-          <div className="loader" key={0}>
-            Loading ...
-          </div>
-        }>
-        <div className="grid-container">
+        loader={<div key={0}>Loading ...</div>}>
+        <div className={styles['grid-container']}>
           <Masonry
             breakpointCols={breakpointColumnsObj}
-            className="my-masonry-grid"
-            columnClassName="my-masonry-grid_column">
+            className={styles['my-masonry-grid']}
+            columnClassName={styles['my-masonry-grid_column']}>
             {items}
           </Masonry>
         </div>

@@ -1,27 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './navbar.css';
+import styles from './Navbar.module.css';
 
 class Navbar extends React.Component {
   render() {
     return (
-      <nav className="nav-container">
-        <div className="navbar">
-          <Link to="/" className="brand nav-link">
-            <i className="brand-logo"></i>
-            <span className="brand-name">Freemage</span>
+      <nav className={styles['nav-container']}>
+        <div className={styles['navbar']}>
+          <Link to="/" className={`${styles['brand']} ${styles['nav-link']}`}>
+            <i className={styles['brand-logo']}></i>
+            <span className={styles['brand-name']}>Freemage</span>
           </Link>
 
-          <ul className="nav">
+          <ul className={styles['nav']}>
             <li>
               <Link
                 to={{ pathname: '/upload', state: { modal: true } }}
-                className="nav-link">
+                className={styles['nav-link']}>
                 Upload
               </Link>
             </li>
             <li>
-              <Link to="/login" className="nav-link">
+              <Link to="/login" className={styles['nav-link']}>
                 Login
               </Link>
             </li>

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export default styled.button`
+  font-family: inherit;
   display: inline-block;
   cursor: pointer;
-  padding: 0.5rem 1rem;
   border-radius: 3px;
   text-decoration: none;
   color: #fff;
