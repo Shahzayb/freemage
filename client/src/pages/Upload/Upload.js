@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Button from '../../UI/Button';
-import Thumb from '../../UI/Thumb/Thumb';
 import uploadIconBig from '../../assets/images/upload-photo.png';
 import uploadIconSmall from '../../assets/images/upload-photo-small.png';
 import styles from './Upload.module.css';
@@ -26,7 +25,9 @@ function Upload(props) {
   });
 
   const thumb = file ? (
-    <Thumb className={styles['thumb']} src={file.preview} />
+    <div className={styles['preview-container']}>
+      <img src={file.preview} alt="" className={styles['image-preview']} />
+    </div>
   ) : null;
 
   const uploadIcon = file ? (

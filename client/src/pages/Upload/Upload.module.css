@@ -37,17 +37,17 @@
 }
 
 .upload-icon-big img {
-  width: 150px;
-  height: 150px;
+  width: 15rem;
+  height: 15rem;
 }
 
 .upload-icon-small img {
-  width: 70px;
-  height: 70px;
+  width: 7rem;
+  height: 7rem;
 }
 
 ul.policies {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   grid-area: bottom;
   column-count: 3;
   align-self: flex-end;
@@ -59,14 +59,21 @@ ul.policies li {
   margin: 0.4rem 0 0 1rem;
 }
 
-.thumb {
-  margin-top: 0.5rem;
-  width: 40vw;
+.preview-container {
+  margin-top: 1rem;
+  width: 100%;
+  height: 50vh;
+}
+
+.preview-container .image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .upload-btn {
   padding: 0.8rem 1rem;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .footer {
@@ -85,10 +92,6 @@ ul.policies li {
 }
 
 @media screen and (max-width: 767px) {
-  .thumb {
-    width: 100%;
-  }
-
   .small-screen {
     display: block;
   }

@@ -1,18 +1,15 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import styles from './Modal.module.css';
 
 export const Modal = props => {
   function onCloseHandle(e) {
     e.stopPropagation();
-    if (
-      e.target.classList.contains(styles['overlay']) ||
-      e.target.classList.contains(styles['closeBtn'])
-    ) {
-      props.history.goBack();
-    }
+
+    props.history.goBack();
   }
 
-  return (
+  return ReactDOM.createPortal(
     <>
       <div className={styles['overlay']} onClick={onCloseHandle}>
         <div
@@ -21,9 +18,12 @@ export const Modal = props => {
           onClick={onCloseHandle}>
           &times;
         </div>
-        <div className={styles['modal']}>{props.children}</div>
+        <div onClick={e => e.stopPropagation()} className={styles['modal']}>
+          {props.children}
+        </div>
       </div>
-    </>
+    </>,
+    document.querySelector('#modal')
   );
 };
 

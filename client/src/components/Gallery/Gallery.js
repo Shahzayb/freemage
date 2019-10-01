@@ -34,7 +34,7 @@ export class Gallery extends Component {
   render() {
     let items = this.state.images.map((imageUrl, i) => (
       <div key={i}>
-        <Link to={{ pathname: `images/${i}`, state: { modal: true } }}>
+        <Link to={{ pathname: `/images/${i}`, state: { modal: true } }}>
           <img
             style={{
               width: '100%',
