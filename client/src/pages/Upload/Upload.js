@@ -26,17 +26,20 @@ function Upload(props) {
 
   const thumb = file ? (
     <div className={styles['preview-container']}>
-      <img src={file.preview} alt="" className={styles['image-preview']} />
+      <img
+        src={file.preview}
+        alt="preview"
+        className={styles['image-preview']}
+      />
     </div>
   ) : null;
 
-  const uploadIcon = file ? (
-    <i className={`${styles['upload-icon']} ${styles['upload-icon-small']}`}>
-      <img src={uploadIconSmall} alt="Upload" />
-    </i>
-  ) : (
-    <i className={`${styles['upload-icon']} ${styles['upload-icon-big']}`}>
-      <img src={uploadIconBig} alt="Upload" />
+  const uploadIcon = (
+    <i
+      className={`${styles['upload-icon']} ${
+        styles['upload-icon-' + (file ? 'small' : 'big')]
+      }`}>
+      <img src={file ? uploadIconSmall : uploadIconBig} alt="Upload" />
     </i>
   );
 
@@ -57,6 +60,7 @@ function Upload(props) {
             : `${styles['dropzone']} ${styles['full-dropzone']}`
         })}>
         <input {...getInputProps()} />
+        {/* bottom data will be provided by parent */}
         <div className={styles['command']}>
           {uploadIcon}
 
@@ -78,8 +82,9 @@ function Upload(props) {
           </ul>
         ) : null}
       </div>
-      <aside>{thumb}</aside>
+      <div>{thumb}</div>
       <footer className={styles['footer']}>
+        {/* click handler will be provied by parent */}
         <Button
           className={styles['upload-btn']}
           disabled={file ? false : true}

@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap');
 
-* {
+:root {
+  --color-text-light-grey: #767676;
+  --color-text-dark-grey: #111;
+  --color-primary-light: #3cb46e;
+  --color-primary-dark: #2e9e5d;
+}
+
+*,
+::before,
+::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,4 +22,5 @@ html {
 
 body {
   font-family: 'Poppins', sans-serif;
+  color: var(--color-text-dark-grey);
 }

@@ -3,6 +3,7 @@ import GoogleLogin from 'react-google-login';
 import styles from './GoogleLogin.module.css';
 
 export default props => {
+  // in future this will dispatch login action
   const responseGoogle = async authResult => {
     try {
       if (authResult['code']) {
@@ -25,9 +26,7 @@ export default props => {
         clientId="222646766650-gqnkmntgaf988iqc2adh61rnge1310q8.apps.googleusercontent.com"
         buttonText="Login with Google"
         responseType="code"
-        accessType="offline"
         redirectUri="postmessage"
-        scope="openid email profile"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}

@@ -6,8 +6,7 @@ import Home from '../pages/Home/Home';
 import Image from '../pages/Image/Image';
 import Upload from '../pages/Upload/Upload';
 import Login from '../pages/Login/Login';
-import UserImages from '../pages/UserImages/UserImages';
-import UserLikedImages from '../pages/UserLikedImages/UserLikedImages';
+import User from '../pages/User/User';
 
 class ModalSwitch extends React.Component {
   previousLocation = this.props.location;
@@ -30,8 +29,7 @@ class ModalSwitch extends React.Component {
           <Route exact path="/" component={Home} />
           <Route path="/images/:id" component={Image} />
           <Route path="/login" component={Login} />
-          <Route path="/:username" component={UserImages} />
-          <Route path="/:username/likes" component={UserLikedImages} />
+          <Route path="/users/:id" component={User} />
         </Switch>
         <Route
           path="/upload"

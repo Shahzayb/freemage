@@ -3,15 +3,16 @@
   top: 0;
   left: 0;
   right: 0;
-  background-color: #fff;
-}
-
-.navbar {
-  width: 96%;
-  margin: 0 auto;
+  padding: 0 2rem;
   height: 6.5rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+
+.brand {
+  display: flex;
   align-items: center;
 }
 
@@ -26,28 +27,27 @@
   margin-right: 1rem;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-}
-
-.nav {
+.nav-list {
   list-style: none;
 }
 
-.nav li {
+.nav-list > li {
   margin-left: 3rem;
   display: inline-block;
-}
-
-.nav-link:hover,
-.nav-link:focus {
-  color: #000000;
 }
 
 .nav-link {
   font-size: 1.6rem;
   text-decoration: none;
-  color: #3c4652;
+  color: var(--color-text-light-grey);
   transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--color-text-dark-grey);
+}
+
+.nav-link-active {
+  color: var(--color-text-dark-grey);
 }
