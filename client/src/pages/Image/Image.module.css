@@ -9,13 +9,23 @@
   overflow: auto;
 }
 
+.nav-link {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: var(--color-text-light-grey);
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--color-text-dark-grey);
+}
+
 .profile {
-  list-style: none;
   display: flex;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
-  color: #000;
-  text-decoration: none;
 }
 
 .profile .rounded-thumb {

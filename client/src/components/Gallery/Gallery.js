@@ -17,6 +17,7 @@ export class Gallery extends Component {
   };
 
   loadImages(page) {
+    // future refector note : delegate image load to parent element
     console.log(page);
     const newImages = [];
     for (let i = 0; i < 5; i++) {
@@ -32,6 +33,7 @@ export class Gallery extends Component {
   }
 
   render() {
+    // this will get removed in future
     let items = this.state.images.map((imageUrl, i) => (
       <div key={i}>
         <Link to={{ pathname: `/images/${i}`, state: { modal: true } }}>
@@ -50,8 +52,11 @@ export class Gallery extends Component {
     return (
       <InfiniteScroll
         pageStart={0}
+        // refector : this.props.onImageLoad
         loadMore={this.loadImages.bind(this)}
+        // refector : this.props.hasMoreImages
         hasMore={true}
+        // refector : add spinner here
         loader={<div key={0}>Loading ...</div>}>
         <div className={styles['grid-container']}>
           <Masonry
@@ -59,6 +64,7 @@ export class Gallery extends Component {
             className={styles['my-masonry-grid']}
             columnClassName={styles['my-masonry-grid_column']}>
             {items}
+            {/* future refector : {this.props.images} */}
           </Masonry>
         </div>
       </InfiniteScroll>

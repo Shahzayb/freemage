@@ -23,15 +23,27 @@
   padding: 0 1rem;
 }
 
-.nav-link:hover,
-.nav-link:focus {
-  color: #000000;
+.nav-list {
+  list-style: none;
+}
+
+.nav-list > li {
+  margin-left: 3rem;
+  display: inline-block;
 }
 
 .nav-link {
   font-size: 1.6rem;
   text-decoration: none;
-  color: #3c4652;
+  color: var(--color-text-light-grey);
   transition: color 0.3s ease-in-out;
-  margin-right: 2rem;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--color-text-dark-grey);
+}
+
+.nav-link-active {
+  color: var(--color-text-dark-grey);
 }
