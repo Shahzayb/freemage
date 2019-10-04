@@ -33,30 +33,46 @@ class Navbar extends React.Component {
             placeholder={'Search photos'}
           />
         </div>
-
-        <div className={css.Notification}>
+        {/* only show notification when logged in */}
+        {/* <div className={css.Notification}>
           <NotificationBell
             title="notifications"
             className={css.NotificationBell}
           />
           <span className={css.NotificationNumber}>3</span>
-        </div>
+        </div> */}
 
+        {/* if user is not logged in then redirect the user to login page */}
         <NavLink
           to={{ pathname: '/upload', state: { modal: true } }}
           className={`${css.UploadBtn} ${css.BigScreen}`}>
           Submit <span className={css.UploadTextBig}>a photo</span>
         </NavLink>
 
+        {/* if user is not logged in then redirect the user to login page */}
         <NavLink
           to={{ pathname: '/upload', state: { modal: true } }}
           className={css.Mobile}>
           <AddPhoto className={css.AddPhotoIcon} title="upload photo" />
         </NavLink>
 
-        <NavLink to="/login" className={`${css.PrimaryBtn} ${css.BigScreen}`}>
+        {/* hide this link if user is logged in */}
+        <NavLink to="/login" className={css.PrimaryBtn}>
           Login
         </NavLink>
+
+        {/* show when logged in */}
+        {/* <NavLink to="/users/someid" title="view profile / logout">
+          <div className={css.Profile}>
+            <img
+              // Will recieve src from parent
+              src="https://source.unsplash.com/random/200x200?profile"
+              // add first name here
+              alt="shahzaib"
+              className={css.RoundedThumb}
+            />
+          </div>
+        </NavLink> */}
       </nav>
     );
   }
