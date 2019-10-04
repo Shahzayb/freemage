@@ -1,9 +1,9 @@
-.container {
+.Container {
   padding: 1rem;
   overflow: auto;
 }
 
-.dropzone {
+.Dropzone {
   border: 2px dashed rgb(219, 219, 219);
   padding: 1rem;
   transition: background-color 0.3s;
@@ -15,38 +15,38 @@
     'bottom';
 }
 
-.dropzone:hover {
+.Dropzone:hover {
   background-color: rgb(243, 243, 243);
 }
 
-.full-dropzone {
+.FullDropzone {
   height: 70vh;
 }
 
-.command {
+.Command {
   font-size: 1.6rem;
   grid-area: top;
   justify-self: center;
   align-self: center;
 }
 
-.upload-icon img {
+.UploadIcon img {
   display: block;
   object-fit: contain;
   margin: auto;
 }
 
-.upload-icon-big img {
+.UploadIconBig img {
   width: 15rem;
   height: 15rem;
 }
 
-.upload-icon-small img {
+.UploadIconSmall img {
   width: 7rem;
   height: 7rem;
 }
 
-ul.policies {
+ul.Policies {
   font-size: 1.4rem;
   grid-area: bottom;
   column-count: 3;
@@ -54,49 +54,49 @@ ul.policies {
   justify-self: center;
 }
 
-ul.policies li {
+ul.Policies li {
   padding-left: 0.5rem;
-  margin: 0.4rem 0 0 1rem;
+  margin: 0.4rem 0 0 2rem;
 }
 
-.preview-container {
+.PreviewContainer {
   margin-top: 1rem;
   width: 100%;
   height: 50vh;
 }
 
-.preview-container .image-preview {
+.PreviewContainer .ImagePreview {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.upload-btn {
+.UploadBtn {
   padding: 0.8rem 1rem;
   font-size: 1.4rem;
 }
 
-.footer {
+.Footer {
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid rgb(243, 243, 243);
   text-align: right;
 }
 
-.underline {
+.Underline {
   text-decoration: underline;
 }
 
-.small-screen {
+.SmallScreen {
   display: none;
 }
 
 @media screen and (max-width: 767px) {
-  .small-screen {
+  .SmallScreen {
     display: block;
   }
 
-  .big-screen {
+  .BigScreen {
     display: none;
   }
 }

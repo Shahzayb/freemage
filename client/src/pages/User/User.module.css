@@ -1,11 +1,11 @@
-.profile {
+.Profile {
   margin-top: 10rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.profile .rounded-thumb {
+.Profile .RoundedThumb {
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
@@ -14,36 +14,36 @@
   object-position: center;
 }
 
-.profile .username {
+.Profile .Username {
   font-size: 2.5rem;
 }
 
-.navbar {
+.Navbar {
   margin-top: 5rem;
   padding: 0 1rem;
 }
 
-.nav-list {
+.NavList {
   list-style: none;
 }
 
-.nav-list > li {
+.NavList > li {
   margin-left: 3rem;
   display: inline-block;
 }
 
-.nav-link {
+.NavLink {
   font-size: 1.6rem;
   text-decoration: none;
   color: var(--color-text-light-grey);
   transition: color 0.3s ease-in-out;
 }
 
-.nav-link:hover,
-.nav-link:focus {
+.NavLink:hover,
+.NavLink:focus {
   color: var(--color-text-dark-grey);
 }
 
-.nav-link-active {
+.NavLinkActive {
   color: var(--color-text-dark-grey);
 }

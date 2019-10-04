@@ -2,29 +2,29 @@ import React from 'react';
 import { NavLink, Switch, Route } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import Gallery from '../../components/Gallery/Gallery';
-import styles from './User.module.css';
+import css from './User.module.css';
 
 const UserImages = props => {
   return (
     <>
       <header>
         <Navbar />
-        <div className={styles['profile']}>
+        <div className={css.Profile}>
           <img
             src="https://source.unsplash.com/random/200x200?profile"
             alt=""
-            className={styles['rounded-thumb']}
+            className={css.RoundedThumb}
           />
-          <div className={styles['username']}>Shahzaib</div>
+          <div className={css.Username}>Shahzaib</div>
         </div>
       </header>
-      <nav className={styles['navbar']}>
-        <ul className={styles['nav-list']}>
+      <nav className={css.Navbar}>
+        <ul className={css.NavList}>
           <li>
             <NavLink
               exact
-              activeClassName={styles['nav-link-active']}
-              className={styles['nav-link']}
+              activeClassName={css.NavLinkActive}
+              className={css.NavLink}
               to="/users/someid">
               Images
             </NavLink>
@@ -32,8 +32,8 @@ const UserImages = props => {
           <li>
             <NavLink
               exact
-              activeClassName={styles['nav-link-active']}
-              className={styles['nav-link']}
+              activeClassName={css.NavLinkActive}
+              className={css.NavLink}
               to="/users/someid/liked">
               Liked Images
             </NavLink>

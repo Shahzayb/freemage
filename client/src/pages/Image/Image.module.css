@@ -1,4 +1,4 @@
-.header {
+.Header {
   margin: 0 1rem;
   display: flex;
   justify-content: space-between;
@@ -9,26 +9,26 @@
   overflow: auto;
 }
 
-.nav-link {
+.NavLink {
   font-size: 1.6rem;
   text-decoration: none;
   color: var(--color-text-light-grey);
   transition: color 0.3s ease-in-out;
 }
 
-.nav-link:hover,
-.nav-link:focus {
+.NavLink:hover,
+.NavLink:focus {
   color: var(--color-text-dark-grey);
 }
 
-.profile {
+.Profile {
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
 
-.profile .rounded-thumb {
+.Profile .RoundedThumb {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -37,40 +37,40 @@
   object-position: center;
 }
 
-.profile .username {
+.Profile .Username {
   font-size: 1.4rem;
 }
 
-.download-btn {
+.DownloadBtn {
   font-size: 1.4rem;
   padding: 0 1rem;
   height: 3.2rem;
 }
 
-.download-btn > #symbol {
+.DownloadBtn > #Symbol {
   display: none;
 }
 
-.download-btn > #text {
+.DownloadBtn > #Text {
   display: inline-block;
 }
 
-.arrow-down img {
+.ArrowDown img {
   display: block;
   width: 20px;
   height: 25px;
 }
 
 @media screen and (max-width: 767px) {
-  .download-btn > #symbol {
+  .DownloadBtn > #Symbol {
     display: block;
   }
 
-  .download-btn > #text {
+  .DownloadBtn > #Text {
     display: none;
   }
 
-  .header {
+  .Header {
     padding: 0.5rem;
   }
 }

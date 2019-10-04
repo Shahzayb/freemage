@@ -1,10 +1,10 @@
 import React from 'react';
 import GoogleLogin from '../../components/GoogleLogin/GoogleLogin';
-import styles from './Login.module.css';
+import css from './Login.module.css';
 
 const Login = () => {
   return (
-    <div className={styles['login-page']}>
+    <div className={css.LoginPage}>
       <GoogleLogin />
     </div>
   );

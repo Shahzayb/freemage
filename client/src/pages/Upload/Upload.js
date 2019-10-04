@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import Button from '../../UI/Button';
 import uploadIconBig from '../../assets/images/upload-photo.png';
 import uploadIconSmall from '../../assets/images/upload-photo-small.png';
-import styles from './Upload.module.css';
+import css from './Upload.module.css';
 
 function Upload(props) {
   const [file, setFile] = useState();
@@ -25,22 +25,18 @@ function Upload(props) {
   });
 
   const thumb = file ? (
-    <div className={styles['preview-container']}>
-      <img
-        src={file.preview}
-        alt="preview"
-        className={styles['image-preview']}
-      />
+    <div className={css.PreviewContainer}>
+      <img src={file.preview} alt="preview" className={css.ImagePreview} />
     </div>
   ) : null;
 
   const uploadIcon = (
-    <i
-      className={`${styles['upload-icon']} ${
-        styles['upload-icon-' + (file ? 'small' : 'big')]
+    <div
+      className={`${css.UploadIcon} ${
+        file ? css.UploadIconSmall : css.UploadIconBig
       }`}>
       <img src={file ? uploadIconSmall : uploadIconBig} alt="Upload" />
-    </i>
+    </div>
   );
 
   useEffect(
@@ -52,28 +48,24 @@ function Upload(props) {
   );
 
   return (
-    <section className={styles['container']}>
+    <section className={css.Container}>
       <div
         {...getRootProps({
-          className: file
-            ? styles['dropzone']
-            : `${styles['dropzone']} ${styles['full-dropzone']}`
+          className: file ? css.Dropzone : `${css.Dropzone} ${css.FullDropzone}`
         })}>
         <input {...getInputProps()} />
         {/* bottom data will be provided by parent */}
-        <div className={styles['command']}>
+        <div className={css.Command}>
           {uploadIcon}
 
-          <p className={`${styles['command-text']} ${styles['small-screen']}`}>
-            Add your photo here
-          </p>
-          <p className={`${styles['command-text']} ${styles['big-screen']}`}>
+          <p className={css.SmallScreen}>Add your photo here</p>
+          <p className={css.BigScreen}>
             Drop your image here or{' '}
-            <span className={styles['underline']}>Browse</span>
+            <span className={css.Underline}>Browse</span>
           </p>
         </div>
         {!file ? (
-          <ul className={`${styles['big-screen']} ${styles['policies']}`}>
+          <ul className={`${css.BigScreen} ${css.Policies}`}>
             <li>High quality photos</li>
             <li>Photos are clear and original</li>
             <li>Only upload photos you own the rights to</li>
@@ -83,10 +75,10 @@ function Upload(props) {
         ) : null}
       </div>
       <div>{thumb}</div>
-      <footer className={styles['footer']}>
+      <footer className={css.Footer}>
         {/* click handler will be provied by parent */}
         <Button
-          className={styles['upload-btn']}
+          className={css.UploadBtn}
           disabled={file ? false : true}
           style={file ? {} : { cursor: 'not-allowed' }}>
           Upload

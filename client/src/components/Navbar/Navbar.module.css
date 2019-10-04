@@ -1,4 +1,4 @@
-.nav-container {
+.NavContainer {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,43 +11,166 @@
   background-color: #fff;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
+.NavContainer > *:not(:last-child) {
+  margin-right: 4rem;
 }
 
-.brand-logo {
-  background-image: url('../../assets/images/logo.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+.BrandLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.6rem;
+  color: #000;
+}
+
+.BrandLink .BrandLogo {
   display: inline-block;
   width: 4rem;
   height: 4rem;
   margin-right: 1rem;
 }
 
-.nav-list {
-  list-style: none;
+.SearchBar {
+  margin: 0 auto;
+  flex: 0 0 30%;
+  position: relative;
 }
 
-.nav-list > li {
-  margin-left: 3rem;
-  display: inline-block;
+.SearchBar .SearchIcon {
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  fill: var(--color-text-light-grey);
 }
 
-.nav-link {
+.SearchBar .SearchText {
+  width: 100%;
   font-size: 1.6rem;
+  padding: 1rem 4.5rem;
+  border-radius: 5rem;
+  border: 1px solid transparent;
+  outline: none;
+  background-color: var(--color-bg-light-grey-2);
+  transition: border 0.3s, background-color 0.3s;
+}
+
+.SearchBar .SearchText:hover,
+.SearchBar .SearchText:focus {
+  border: 1px solid var(--color-bg-light-grey-3);
+}
+
+.SearchBar .SearchText:focus {
+  background-color: var(--color-bg-light-grey-1);
+}
+
+.Notification {
+  margin-left: auto;
+  position: relative;
+  cursor: pointer;
+}
+
+.Notification .NotificationBell {
+  fill: var(--color-text-light-grey);
+}
+
+.Notification .NotificationBell:hover {
+  fill: var(--color-text-dark-grey);
+}
+
+.Notification .NotificationNumber {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: inline-block;
+  border-radius: 50%;
+  width: 1.5rem;
+  text-align: center;
+  background-color: red;
+  color: #fff;
+}
+
+.PrimaryBtn {
+  font-size: 1.6rem;
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  cursor: pointer;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #fff;
+  background-color: var(--color-primary-light);
+  user-select: none;
+  outline: none;
+  border: none;
+  transition: background-color 0.5s;
+}
+
+.PrimaryBtn:hover,
+.PrimaryBtn:focus {
+  background-color: var(--color-primary-dark);
+}
+
+.UploadBtn {
+  font-size: 1.6rem;
+  padding: 0.4rem 1.2rem;
   text-decoration: none;
   color: var(--color-text-light-grey);
+  border-radius: 3px;
+  border: 1px solid var(--color-text-light-grey);
   transition: color 0.3s ease-in-out;
 }
 
-.nav-link:hover,
-.nav-link:focus {
+.UploadBtn:hover,
+.UploadBtn:focus {
+  border: 1px solid var(--color-text-dark-grey);
   color: var(--color-text-dark-grey);
 }
 
-.nav-link-active {
-  color: var(--color-text-dark-grey);
+.Mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 867px) {
+  .UploadTextBig {
+    display: none;
+  }
+
+  .SearchBar {
+    flex: 0 0 45%;
+  }
+
+  .BrandLink .BrandName {
+    display: none;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .BigScreen {
+    display: none;
+  }
+
+  .Mobile {
+    display: inline-block;
+    fill: var(--color-text-light-grey);
+    transition: all 0.4s;
+  }
+
+  .Mobile:hover,
+  .Mobile:active,
+  .Mobile:focus {
+    fill: var(--color-text-dark-grey);
+  }
+
+  .NavContainer > *:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .Notification {
+    margin-left: 0;
+  }
+
+  .AddPhotoIcon {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
 }

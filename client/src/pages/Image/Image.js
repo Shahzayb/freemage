@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../UI/Button';
 import ImageZoomer from '../../UI/ImageZoomer/ImageZoomer';
-import arrow from '../../assets/images/arrow-down.svg';
-import styles from './Image.module.css';
+import css from './Image.module.css';
 
 // url is /images/:id
 // retieve image data from :id param through dispatching
@@ -32,29 +31,30 @@ const Image = props => {
 
   return (
     <>
-      <header className={styles['header']}>
+      <header className={css.Header}>
         {/* future refector : to will refer to /:firstName/:id */}
-        <Link to="/users/someid" className={styles['nav-link']}>
-          <div className={styles['profile']}>
+        <Link to="/users/someid" className={css.NavLink}>
+          <div className={css.Profile}>
             <img
               // Will recieve src from parent
               src="https://source.unsplash.com/random/200x200?profile"
               // add first name here
               alt="shahzaib"
-              className={styles['rounded-thumb']}
+              className={css.RoundedThumb}
             />
             {/* Add username here : first name */}
-            <div className={styles['username']}>Shahzaib</div>
+            <div className={css.Username}>Shahzaib</div>
           </div>
         </Link>
 
         {/* Add image like button here */}
 
         {/* download original image when clicked */}
-        <Button title="Download" className={styles['download-btn']}>
-          <span id={styles['text']}>Download free</span>
-          <i id={styles['symbol']} className={styles['arrow-down']}>
-            <img src={arrow} alt="Download symbol" />
+        <Button title="Download" className={css.DownloadBtn}>
+          <span id={css.Text}>Download free</span>
+          <i id={css.Symbol} className={css.ArrowDown}>
+            {/* Add Svg as ReactComponent here */}
+            {/* <img src="" alt="Download symbol" /> */}
           </i>
         </Button>
       </header>
