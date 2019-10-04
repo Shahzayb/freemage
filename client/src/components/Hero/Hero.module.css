@@ -23,38 +23,9 @@
   text-shadow: 1px 1px 3px rgb(187, 187, 187);
 }
 
-.Mobile {
-  display: none;
-}
-
 @media only screen and (max-width: 767px) {
   .LandingText {
     font-size: 3rem;
     width: 30rem;
-  }
-
-  .PrimaryBtn {
-    margin-top: 1rem;
-    font-size: 1.6rem;
-    display: inline-block;
-    padding: 0.4rem 1.2rem;
-    cursor: pointer;
-    border-radius: 3px;
-    text-decoration: none;
-    color: #fff;
-    background-color: var(--color-primary-light);
-    user-select: none;
-    outline: none;
-    border: none;
-    transition: background-color 0.5s;
-  }
-
-  .PrimaryBtn:hover,
-  .PrimaryBtn:focus {
-    background-color: var(--color-primary-dark);
-  }
-
-  .Mobile {
-    display: inline-block;
   }
 }
