@@ -1,4 +1,4 @@
-.overlay {
+.Overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
   cursor: zoom-out;
 }
 
-.closeBtn {
+.CloseBtn {
   z-index: 1;
   display: inline-block;
   position: fixed;
@@ -22,11 +22,11 @@
   transition: color 0.5s;
 }
 
-.closeBtn:hover {
+.CloseBtn:hover {
   color: white;
 }
 
-.modal {
+.Modal {
   position: relative;
   display: block;
   width: 90%;
@@ -39,11 +39,11 @@
 }
 
 @media (max-width: 767px) {
-  .modal {
+  .Modal {
     width: 100%;
   }
 
-  .closeBtn {
+  .CloseBtn {
     position: absolute;
   }
 }

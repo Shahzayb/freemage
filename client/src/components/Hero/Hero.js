@@ -1,11 +1,17 @@
 import React from 'react';
-import styles from './Hero.module.css';
+import { NavLink } from 'react-router-dom';
+import css from './Hero.module.css';
 
 const Hero = () => {
   return (
-    <div className={styles['hero']}>
-      <div className={styles['landing-text']}>
-        The best free stock photos shared by talented creators.
+    <div className={css.Hero}>
+      <div>
+        <div className={css.LandingText}>
+          The best free stock photos shared by talented creators.
+        </div>
+        <NavLink to="/login" className={`${css.PrimaryBtn} ${css.Mobile}`}>
+          Login
+        </NavLink>
       </div>
     </div>
   );

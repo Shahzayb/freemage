@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styles from './Modal.module.css';
+import css from './Modal.module.css';
 
 export const Modal = props => {
   function onCloseHandle(e) {
@@ -11,14 +11,11 @@ export const Modal = props => {
 
   return ReactDOM.createPortal(
     <>
-      <div className={styles['overlay']} onClick={onCloseHandle}>
-        <div
-          className={styles['closeBtn']}
-          title="close"
-          onClick={onCloseHandle}>
+      <div className={css.Overlay} onClick={onCloseHandle}>
+        <div className={css.CloseBtn} title="close" onClick={onCloseHandle}>
           &times;
         </div>
-        <div onClick={e => e.stopPropagation()} className={styles['modal']}>
+        <div onClick={e => e.stopPropagation()} className={css.Modal}>
           {props.children}
         </div>
       </div>
