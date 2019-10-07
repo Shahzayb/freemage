@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import { ReactComponent as Search } from '../../assets/images/search.svg';
 import { ReactComponent as NotificationBell } from '../../assets/images/bell.svg';
@@ -34,13 +35,15 @@ class Navbar extends React.Component {
           />
         </div>
         {/* only show notification when logged in */}
-        {/* <div className={css.Notification}>
-          <NotificationBell
-            title="notifications"
-            className={css.NotificationBell}
-          />
-          <span className={css.NotificationNumber}>3</span>
-        </div> */}
+        {this.props.isLoggedIn ? (
+          <div className={css.Notification}>
+            <NotificationBell
+              title="notifications"
+              className={css.NotificationBell}
+            />
+            <span className={css.NotificationNumber}>3</span>
+          </div>
+        ) : null}
 
         {/* if user is not logged in then redirect the user to login page */}
         <NavLink
@@ -57,25 +60,35 @@ class Navbar extends React.Component {
         </NavLink>
 
         {/* hide this link if user is logged in */}
-        <NavLink to="/login" className={css.PrimaryBtn}>
-          Login
-        </NavLink>
+        {this.props.isLoggedIn ? null : (
+          <NavLink to="/login" className={css.PrimaryBtn}>
+            Login
+          </NavLink>
+        )}
 
         {/* show when logged in */}
-        {/* <NavLink to="/users/someid" title="view profile / logout">
-          <div className={css.Profile}>
-            <img
-              // Will recieve src from parent
-              src="https://source.unsplash.com/random/200x200?profile"
-              // add first name here
-              alt="shahzaib"
-              className={css.RoundedThumb}
-            />
-          </div>
-        </NavLink> */}
+        {this.props.isLoggedIn ? (
+          <NavLink
+            to={`/users/${this.props.userId}`}
+            title="view profile / logout">
+            <div className={css.Profile}>
+              <img
+                src={this.props.profilePic}
+                alt=""
+                className={css.RoundedThumb}
+              />
+            </div>
+          </NavLink>
+        ) : null}
       </nav>
     );
   }
 }
 
-export default Navbar;
+const mapStateToProps = state => ({
+  isLoggedIn: state.auth.isLoggedIn,
+  userId: state.auth.userId,
+  profilePic: state.auth.profilePic
+});
+
+export default connect(mapStateToProps)(Navbar);

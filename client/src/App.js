@@ -1,11 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
+import Startup from './components/Startup';
+import history from './lib/history';
 import ModalSwitch from './components/ModalSwitch';
 
 function App() {
   return (
-    <Router>
-      <Route component={ModalSwitch} />
+    <Router history={history}>
+      <Startup>
+        <Route component={ModalSwitch} />
+      </Startup>
     </Router>
   );
 }

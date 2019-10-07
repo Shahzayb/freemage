@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import Button from '../../UI/Button';
 import uploadIconBig from '../../assets/images/upload-photo.png';
 import uploadIconSmall from '../../assets/images/upload-photo-small.png';
 import css from './Upload.module.css';
@@ -77,12 +76,12 @@ function Upload(props) {
       <div>{thumb}</div>
       <footer className={css.Footer}>
         {/* click handler will be provied by parent */}
-        <Button
+        <button
           className={css.UploadBtn}
           disabled={file ? false : true}
           style={file ? {} : { cursor: 'not-allowed' }}>
           Upload
-        </Button>
+        </button>
       </footer>
     </section>
   );
