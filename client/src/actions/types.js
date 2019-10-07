@@ -1,4 +1,2 @@
-export const ENSURE_LOGIN = 'ENSURE_LOGIN';
-export const LOGIN_USER = 'LOGIN_USER';
-export const START_LOGIN_PROCESS = 'START_LOGIN_PROCESS';
-export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGIN_START = 'LOGIN_START';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';

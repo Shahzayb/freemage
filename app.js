@@ -5,6 +5,7 @@ require('./data/index'); // connecting to database
 
 const imagesRoute = require('./routes/images');
 const authRouter = require('./routes/auth');
+const usersRouter = require('./routes/users');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use('/api/images/', imagesRoute);
 app.use('/api/auth/', authRouter);
+app.use('/api/users/', usersRouter);
 
 // generic 404
 app.use((req, res) => {
