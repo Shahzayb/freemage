@@ -5,21 +5,21 @@ export const ensureLogin = () => async dispatch => {
   try {
     const token = localStorage.getItem('token');
     if (token) {
+      dispatch({
+        type: actionTypes.LOGIN_START
+      });
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       const res = await axios.get('/api/users/me');
       const userId = res.data._id;
       const profilePic = res.data.profilePic;
       const isLoggedIn = true;
       dispatch({
-        type: actionTypes.ENSURE_LOGIN,
+        type: actionTypes.LOGIN_SUCCESS,
         payload: { userId, profilePic, isLoggedIn, token }
       });
     }
   } catch (e) {
     console.error(e);
-    localStorage.removeItem('token');
-    delete axios.defaults.headers.common['Authorization'];
-    dispatch({ type: actionTypes.LOGIN_FAIL, error: e });
   }
 };
 
@@ -30,7 +30,7 @@ export const loginUser = grantCode => async dispatch => {
     }
 
     dispatch({
-      type: actionTypes.START_LOGIN_PROCESS
+      type: actionTypes.LOGIN_START
     });
 
     const res = await axios.post('/api/auth/google', {
@@ -46,7 +46,7 @@ export const loginUser = grantCode => async dispatch => {
       localStorage.setItem('token', token);
 
       dispatch({
-        type: actionTypes.LOGIN_USER,
+        type: actionTypes.LOGIN_SUCCESS,
         payload: { userId, profilePic, isLoggedIn, token }
       });
     } else {
@@ -55,9 +55,5 @@ export const loginUser = grantCode => async dispatch => {
   } catch (e) {
     console.error(e);
     localStorage.removeItem('token');
-    dispatch({
-      type: actionTypes.LOGIN_FAIL,
-      error: e
-    });
   }
 };

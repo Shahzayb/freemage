@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import uploadIconBig from '../../assets/images/upload-photo.png';
 import uploadIconSmall from '../../assets/images/upload-photo-small.png';
 import css from './Upload.module.css';
@@ -46,6 +48,11 @@ function Upload(props) {
     [file]
   );
 
+  // Redirect the user if not logged in
+  if (!this.props.isLoggedIn) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <section className={css.Container}>
       <div
@@ -87,4 +94,8 @@ function Upload(props) {
   );
 }
 
-export default Upload;
+const mapStateToProps = state => ({
+  isLoggedIn: state.auth.isLoggedIn
+});
+
+export default connect(mapStateToProps)(Upload);
