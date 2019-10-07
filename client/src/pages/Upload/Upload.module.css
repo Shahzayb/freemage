@@ -72,8 +72,24 @@ ul.Policies li {
 }
 
 .UploadBtn {
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #fff;
+  background-color: var(--color-primary-light);
+  user-select: none;
+  outline: none;
+  border: none;
+  transition: background-color 0.5s;
+  height: 3.2rem;
   padding: 0.8rem 1rem;
   font-size: 1.4rem;
+}
+
+.UploadBtn:hover,
+.UploadBtn:focus {
+  background-color: var(--color-primary-dark);
 }
 
 .Footer {

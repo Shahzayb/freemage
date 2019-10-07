@@ -5,16 +5,7 @@ import css from './GoogleLogin.module.css';
 export default props => {
   // in future this will dispatch login action
   const responseGoogle = async authResult => {
-    try {
-      if (authResult['code']) {
-        console.log(responseGoogle);
-      } else {
-        // There was an error.
-        throw new Error('cannot retrieve authorization code');
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    props.loginUser(authResult['code']);
   };
 
   return (

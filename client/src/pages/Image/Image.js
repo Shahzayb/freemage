@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../UI/Button';
 import ImageZoomer from '../../UI/ImageZoomer/ImageZoomer';
 import css from './Image.module.css';
 
@@ -50,13 +49,13 @@ const Image = props => {
         {/* Add image like button here */}
 
         {/* download original image when clicked */}
-        <Button title="Download" className={css.DownloadBtn}>
+        <button title="Download" className={css.DownloadBtn}>
           <span id={css.Text}>Download free</span>
           <i id={css.Symbol} className={css.ArrowDown}>
             {/* Add Svg as ReactComponent here */}
             {/* <img src="" alt="Download symbol" /> */}
           </i>
-        </Button>
+        </button>
       </header>
       <ImageZoomer />
     </>

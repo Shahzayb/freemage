@@ -51,6 +51,7 @@ export class Gallery extends Component {
 
     return (
       <InfiniteScroll
+        // will recieve pageStart from props
         pageStart={0}
         // refector : this.props.onImageLoad
         loadMore={this.loadImages.bind(this)}

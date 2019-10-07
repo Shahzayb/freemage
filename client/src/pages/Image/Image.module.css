@@ -42,9 +42,24 @@
 }
 
 .DownloadBtn {
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #fff;
+  background-color: var(--color-primary-light);
+  user-select: none;
+  outline: none;
+  border: none;
+  transition: background-color 0.5s;
   font-size: 1.4rem;
   padding: 0 1rem;
   height: 3.2rem;
+}
+
+.DownloadBtn:hover,
+.DownloadBtn:focus {
+  background-color: var(--color-primary-dark);
 }
 
 .DownloadBtn > #Symbol {
