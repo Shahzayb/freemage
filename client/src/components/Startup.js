@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import Loading from '../pages/Loading/Loading';
 import { ensureLogin } from '../actions/auth';
 
 export class Startup extends Component {
@@ -9,13 +9,17 @@ export class Startup extends Component {
   }
 
   render() {
-    return this.props.children;
+    return this.props.loading ? <Loading /> : this.props.children;
   }
 }
+
+const mapStateToProps = state => ({
+  loading: state.auth.loading
+});
 
 const mapDispatchToProps = { ensureLogin };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Startup);

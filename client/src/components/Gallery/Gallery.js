@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroller';
-
+import Spinner from '../../UI/Spinner';
 import Masonry from 'react-masonry-css';
 import css from './Gallery.module.css';
 
@@ -58,7 +58,7 @@ export class Gallery extends Component {
         // refector : this.props.hasMoreImages
         hasMore={true}
         // refector : add spinner here
-        loader={<div key={0}>Loading ...</div>}>
+        loader={<Spinner />}>
         <div className={css.GridContainer}>
           <Masonry
             breakpointCols={breakpointColumnsObj}
