@@ -75,7 +75,7 @@ exports.likeImage = async (req, res) => {
       await image.save();
       await req.user.save();
     }
-    image.likes = image.likedBy.length;
+
     res.send({ image, totalLikes: image.likedBy.length });
   } catch (e) {
     console.error(e);
