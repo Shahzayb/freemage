@@ -57,8 +57,11 @@ export class Gallery extends Component {
         loadMore={this.loadImages.bind(this)}
         // refector : this.props.hasMoreImages
         hasMore={true}
-        // refector : add spinner here
-        loader={<Spinner />}>
+        loader={
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Spinner />
+          </div>
+        }>
         <div className={css.GridContainer}>
           <Masonry
             breakpointCols={breakpointColumnsObj}

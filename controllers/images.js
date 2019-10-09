@@ -46,12 +46,17 @@ exports.postPendingImage = async (req, res, next) => {
 
 exports.getImageById = async (req, res) => {
   try {
-    const image = await Image.findById(req.params.id);
+    let image = await Image.findById(req.params.id);
     if (!image) {
       return res.status(404).send('image not found');
     }
 
-    res.send({ ...image, totalLikes: image.likedBy.length });
+    image = image.toObject();
+
+    delete image.publicId;
+    delete image.likedBy;
+
+    res.send(image);
   } catch (e) {
     console.error(e);
     res.status(500).send();
@@ -76,7 +81,7 @@ exports.likeImage = async (req, res) => {
       await req.user.save();
     }
 
-    res.send({ image, totalLikes: image.likedBy.length });
+    res.send();
   } catch (e) {
     console.error(e);
     res.status(500).send();
@@ -105,7 +110,7 @@ exports.unlikeImage = async (req, res) => {
       await req.user.save();
     }
 
-    res.send({ image, totalLikes: image.likedBy.length });
+    res.send();
   } catch (e) {
     console.error(e);
     res.status(500).send();
