@@ -45,14 +45,14 @@ class Navbar extends React.Component {
           </div>
         ) : null}
 
-        {/* if user is not logged in then redirect the user to login page */}
+        {/* if user is not loggedin then redirect the user to login page */}
         <NavLink
           to={{ pathname: '/upload', state: { modal: true } }}
           className={`${css.UploadBtn} ${css.BigScreen}`}>
           Submit <span className={css.UploadTextBig}>a photo</span>
         </NavLink>
 
-        {/* if user is not logged in then redirect the user to login page */}
+        {/* if user is not loggedin then redirect the user to login page */}
         <NavLink
           to={{ pathname: '/upload', state: { modal: true } }}
           className={css.Mobile}>

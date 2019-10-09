@@ -5,6 +5,7 @@ import css from './GoogleLogin.module.css';
 export default props => {
   // in future this will dispatch login action
   const responseGoogle = async authResult => {
+    console.log(authResult);
     props.loginUser(authResult['code']);
   };
 
@@ -20,7 +21,6 @@ export default props => {
         redirectUri="postmessage"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
-        cookiePolicy={'single_host_origin'}
       />
     </div>
   );

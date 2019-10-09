@@ -13,7 +13,7 @@ const ImageSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  tags: [String],
+  tags: { type: [String], index: true },
   ownerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
