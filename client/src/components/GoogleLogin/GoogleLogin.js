@@ -15,7 +15,7 @@ export default props => {
         Click this button to signin or signup with google
       </h1>
       <GoogleLogin
-        clientId="222646766650-gqnkmntgaf988iqc2adh61rnge1310q8.apps.googleusercontent.com"
+        clientId={process.env.REACT_APP_CLIENT_ID}
         buttonText="Login with Google"
         responseType="code"
         redirectUri="postmessage"
