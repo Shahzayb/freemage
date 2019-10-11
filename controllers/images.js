@@ -1,5 +1,5 @@
-const Image = require('../models/image.js');
-const PendingImage = require('../models/pending-image.js');
+const Image = require('../model/image.js');
+const PendingImage = require('../model/pending-image.js');
 const generateSrcset = require('../utils/generate-srcset.js');
 
 exports.getImages = async (req, res, next) => {
