@@ -12,7 +12,9 @@ const cloudinaryUpload = async (req, res, next) => {
       moderation: 'aws_rek',
       categorization: 'aws_rek_tagging',
       auto_tagging: 0.5,
-      notification_url: 'https://enwf9clvv79g.x.pipedream.net/', // 3rd party webhook endpoint
+      notification_url:
+        process.env.CLOUDINARY_WEBHOOK_URL ||
+        'https://enwf9clvv79g.x.pipedream.net/', // 3rd party webhook endpoint
       folder: 'freemage',
 
       responsive_breakpoints: {
