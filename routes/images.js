@@ -1,10 +1,10 @@
 const express = require('express');
 const multer = require('multer');
 
-const imageController = require('../controllers/images');
-const cloudinaryUpload = require('../middlewares/cloudinaryUpload');
-const bufferToDataUri = require('../middlewares/bufferToDataUri');
-const auth = require('../middlewares/authenticate');
+const imageController = require('../controllers/images.js');
+const cloudinaryUpload = require('../middlewares/cloudinary-upload.js');
+const bufferToDataUri = require('../middlewares/buffer-to-datauri.js');
+const auth = require('../middlewares/authenticate.js');
 
 const router = express.Router();
 

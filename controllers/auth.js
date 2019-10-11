@@ -1,6 +1,6 @@
-const googleAuth = require('../utils/googleAuth');
-const generateToken = require('../utils/generateTokenById');
-const User = require('../models/User');
+const googleAuth = require('../utils/google-auth.js');
+const generateToken = require('../utils/generate-token-by-id.js');
+const User = require('../models/user.js');
 
 exports.login = async (req, res) => {
   try {
