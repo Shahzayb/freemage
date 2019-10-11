@@ -1,5 +1,14 @@
 const express = require('express');
 const logger = require('morgan');
+
+/**
+ * Custom .env cofiguration
+ */
+if (process.env.NODE_ENV !== 'production') {
+  const path = require('path');
+  require('dotenv').config({ path: path.join(__dirname, './config/dev.env') });
+}
+
 require('./data/index'); // connecting to database
 
 const imagesRoute = require('./routes/images');
@@ -41,4 +50,6 @@ app.use((err, req, res) => {
   res.status(500).send();
 });
 
-module.exports = app;
+const PORT = process.env.PORT || '5000';
+
+app.listen(PORT, () => console.log(`server started on port ${PORT}`));
