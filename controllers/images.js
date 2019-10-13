@@ -29,21 +29,6 @@ exports.getImages = async (req, res, next) => {
   }
 };
 
-exports.postPendingImage = async (req, res, next) => {
-  try {
-    // publicId is private until the image is approved
-    const pendingImage = new PendingImage({
-      publicId: req.body.publicId
-    });
-
-    await pendingImage.save();
-    res.status(202).send();
-  } catch (e) {
-    console.log(e);
-    res.status(500).send();
-  }
-};
-
 exports.getImageById = async (req, res) => {
   try {
     let image = await Image.findById(req.params.id);

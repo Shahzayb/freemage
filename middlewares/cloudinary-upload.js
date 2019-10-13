@@ -1,4 +1,5 @@
 const cloudinary = require('cloudinary').v2;
+const PendingImage = require('../model/pending-image.js');
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -7,8 +8,8 @@ cloudinary.config({
 });
 
 const cloudinaryUpload = async (req, res, next) => {
-  try {
-    const result = await cloudinary.uploader.upload(req.file, {
+  cloudinary.uploader
+    .upload(req.file, {
       moderation: 'aws_rek',
       categorization: 'aws_rek_tagging',
       auto_tagging: 0.5,
@@ -24,15 +25,20 @@ const cloudinaryUpload = async (req, res, next) => {
         max_width: 2500,
         max_images: 30
       }
+    })
+    .then(result => {
+      // publicId is private until the image is approved
+      const pendingImage = new PendingImage({
+        publicId: result.public_id
+      });
+      return pendingImage.save();
+    })
+    .catch(e => {
+      console.error(e);
+      // user notify : server error
     });
 
-    req.body.publicId = result.public_id;
-
-    next();
-  } catch (e) {
-    console.error(e);
-    res.status(500).send();
-  }
+  res.status(202).send();
 };
 
 module.exports = cloudinaryUpload;
