@@ -13,50 +13,24 @@ const breakpointColumnsObj = {
 
 export class Gallery extends Component {
   state = {
-    images: []
+    pageStart: null
   };
 
+  componentDidMount() {
+    this.setState({ pageStart: this.props.pageStart });
+  }
+
   loadImages(page) {
-    // future refector note : delegate image load to parent element
     console.log(page);
-    const newImages = [];
-    for (let i = 0; i < 5; i++) {
-      newImages.push(
-        `https://source.unsplash.com/random?sig=${Math.trunc(
-          Math.random() * 5000
-        )}`
-      );
-    }
-    this.setState(state => {
-      return { images: [...state.images, ...newImages] };
-    });
+    this.props.fetchNext(page);
   }
 
   render() {
-    // this will get removed in future
-    let items = this.state.images.map((imageUrl, i) => (
-      <div key={i}>
-        <Link to={{ pathname: `/images/${i}`, state: { modal: true } }}>
-          <img
-            style={{
-              width: '100%',
-              height: '100%'
-            }}
-            src={imageUrl}
-            alt=""
-          />
-        </Link>
-      </div>
-    ));
-
-    return (
+    return Number.isInteger(this.state.pageStart) ? (
       <InfiniteScroll
-        // will recieve pageStart from props
-        pageStart={0}
-        // refector : this.props.onImageLoad
+        pageStart={this.state.pageStart}
         loadMore={this.loadImages.bind(this)}
-        // refector : this.props.hasMoreImages
-        hasMore={true}
+        hasMore={this.props.hasMore}
         loader={
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Spinner />
@@ -67,12 +41,21 @@ export class Gallery extends Component {
             breakpointCols={breakpointColumnsObj}
             className={css.MyMasonryGrid}
             columnClassName={css.MyMasonryGridColumn}>
-            {items}
-            {/* future refector : {this.props.images} */}
+            {this.props.images.map(obj => (
+              <div>
+                <Link to={`/images/${obj._id}`}>
+                  <img
+                    style={{ width: '100%', height: '100%' }}
+                    src={obj.src}
+                    alt=""
+                  />
+                </Link>
+              </div>
+            ))}
           </Masonry>
         </div>
       </InfiniteScroll>
-    );
+    ) : null;
   }
 }
 
