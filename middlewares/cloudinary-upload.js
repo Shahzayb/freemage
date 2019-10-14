@@ -29,7 +29,8 @@ const cloudinaryUpload = async (req, res, next) => {
     .then(result => {
       // publicId is private until the image is approved
       const pendingImage = new PendingImage({
-        publicId: result.public_id
+        publicId: result.public_id,
+        userId: req.user.id
       });
       console.log('upload result', result);
       return pendingImage.save();

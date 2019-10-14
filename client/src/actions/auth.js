@@ -45,6 +45,8 @@ export const loginUser = grantCode => async dispatch => {
     const isLoggedIn = true;
     const token = res.data.token;
 
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
     localStorage.setItem('token', token);
 
     dispatch({
