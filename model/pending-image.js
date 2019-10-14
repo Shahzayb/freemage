@@ -5,6 +5,10 @@ const PendingImageSchema = new mongoose.Schema({
     type: String,
     required: true,
     index: true
+  },
+  userId: {
+    type: String,
+    required: true
   }
 });
 

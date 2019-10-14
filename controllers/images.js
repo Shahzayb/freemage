@@ -122,7 +122,8 @@ exports.postImageHook = async (req, res, next) => {
           src,
           srcset,
           tags,
-          publicId
+          publicId,
+          ownerId: pendingImage.userId
         });
 
         await image.save();

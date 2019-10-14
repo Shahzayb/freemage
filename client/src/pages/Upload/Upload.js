@@ -68,7 +68,7 @@ function Upload(props) {
 
   // Redirect the user if not logged in
   if (!props.isLoggedIn) {
-    return <Redirect to="/" />;
+    return <Redirect to="/login" />;
   }
 
   return (
