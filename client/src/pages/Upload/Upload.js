@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from '../../lib/axios';
 import uploadIconBig from '../../assets/images/upload-photo.png';
 import uploadIconSmall from '../../assets/images/upload-photo-small.png';
 import css from './Upload.module.css';
@@ -39,6 +40,23 @@ function Upload(props) {
       <img src={file ? uploadIconSmall : uploadIconBig} alt="Upload" />
     </div>
   );
+
+  const uploadHandler = e => {
+    e.preventDefault();
+    if (file) {
+      const formData = new FormData();
+      formData.append('image', file);
+      axios
+        .post('/api/images', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then(res => console.log('res', res))
+        .catch(e => console.log('error', e));
+      console.log('upload', file);
+    }
+  };
 
   useEffect(
     () => () => {
@@ -84,6 +102,7 @@ function Upload(props) {
       <footer className={css.Footer}>
         {/* click handler will be provied by parent */}
         <button
+          onClick={uploadHandler}
           className={css.UploadBtn}
           disabled={file ? false : true}
           style={file ? {} : { cursor: 'not-allowed' }}>
