@@ -15,7 +15,7 @@ const cloudinaryUpload = async (req, res, next) => {
       auto_tagging: 0.5,
       notification_url:
         process.env.CLOUDINARY_WEBHOOK_URL ||
-        'https://enwf9clvv79g.x.pipedream.net/', // 3rd party webhook endpoint
+        'https://ent7diyacvjam.x.pipedream.net/', // 3rd party webhook endpoint
       folder: 'freemage',
 
       responsive_breakpoints: {
@@ -31,6 +31,7 @@ const cloudinaryUpload = async (req, res, next) => {
       const pendingImage = new PendingImage({
         publicId: result.public_id
       });
+      console.log('upload result', result);
       return pendingImage.save();
     })
     .catch(e => {
