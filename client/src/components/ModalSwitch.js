@@ -9,6 +9,7 @@ import Login from '../pages/Login/Login';
 import User from '../pages/User/User';
 import MobileSearch from '../pages/MobileSearch/MobileSearch';
 import SearchImage from '../pages/SearchImage/SearchImage';
+import Navbar from './Navbar/Navbar';
 
 class ModalSwitch extends React.Component {
   previousLocation = this.props.location;
@@ -27,6 +28,7 @@ class ModalSwitch extends React.Component {
 
     return (
       <>
+        <Navbar />
         <Switch location={isModal ? this.previousLocation : location}>
           <Route exact path="/" component={Home} />
           <Route path="/images/:id" component={Image} />
@@ -38,20 +40,12 @@ class ModalSwitch extends React.Component {
         {/* Upload page will always render inside modal */}
         <Route
           path="/upload"
-          render={props => (
-            <Modal {...props}>
-              <Upload></Upload>
-            </Modal>
-          )}
+          render={props => <Modal {...props} component={Upload} />}
         />
         {isModal ? (
           <Route
             path="/images/:id"
-            render={props => (
-              <Modal {...props}>
-                <Image></Image>
-              </Modal>
-            )}
+            render={props => <Modal {...props} component={Image} />}
           />
         ) : null}
       </>

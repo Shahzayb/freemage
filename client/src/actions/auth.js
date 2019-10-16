@@ -19,9 +19,16 @@ export const ensureLogin = () => async dispatch => {
         type: actionTypes.LOGIN_SUCCESS,
         payload: { userId, profilePic, isLoggedIn, token }
       });
+    } else {
+      throw new Error('login fail');
     }
   } catch (e) {
     console.error(e);
+    delete axios.defaults.headers.common['Authorization'];
+    localStorage.removeItem('token');
+    dispatch({
+      type: actionTypes.LOGIN_FAIL
+    });
   }
 };
 
@@ -55,6 +62,10 @@ export const loginUser = grantCode => async dispatch => {
     });
   } catch (e) {
     console.error(e);
+    delete axios.defaults.headers.common['Authorization'];
     localStorage.removeItem('token');
+    dispatch({
+      type: actionTypes.LOGIN_FAIL
+    });
   }
 };

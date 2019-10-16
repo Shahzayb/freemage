@@ -3,10 +3,9 @@ import * as actionTypes from '../actions/types';
 const initialState = {
   userId: null,
   token: null,
-  isLoggedIn: null,
+  isLoggedIn: false,
   profilePic: null,
-  loading: false,
-  error: null
+  loading: true
 };
 
 export default (state = initialState, action) => {
@@ -22,6 +21,8 @@ export default (state = initialState, action) => {
         ...action.payload,
         loading: false
       };
+    case actionTypes.LOGIN_FAIL:
+      return { ...initialState, loading: false };
     default:
       return state;
   }

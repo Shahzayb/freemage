@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import css from './Modal.module.css';
 
-export const Modal = props => {
+export const Modal = ({ component: Component, ...rest }) => {
   function onCloseHandle(e) {
     e.stopPropagation();
 
-    props.history.goBack();
+    rest.history.goBack();
   }
 
   return ReactDOM.createPortal(
@@ -16,7 +16,7 @@ export const Modal = props => {
           &times;
         </div>
         <div onClick={e => e.stopPropagation()} className={css.Modal}>
-          {props.children}
+          <Component modal={true} {...rest} />
         </div>
       </div>
     </>,

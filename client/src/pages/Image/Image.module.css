@@ -70,8 +70,8 @@
   display: inline-block;
 }
 
-.ArrowDown img {
-  display: block;
+.ArrowDown {
+  fill: #fff;
   width: 20px;
   height: 25px;
 }
