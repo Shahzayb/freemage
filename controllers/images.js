@@ -36,11 +36,6 @@ exports.getImageById = async (req, res) => {
       return res.status(404).send('image not found');
     }
 
-    image = image.toObject();
-
-    delete image.publicId;
-    delete image.likedBy;
-
     res.send(image);
   } catch (e) {
     console.error(e);
@@ -108,6 +103,8 @@ exports.postImageHook = async (req, res, next) => {
       const tags = req.body.tags;
       const src = req.body.secure_url;
       const publicId = req.body.public_id;
+      const filename =
+        publicId.replace('/', '-') + src.match(/\.(jpg|jpeg)$/)[0];
       const pendingImage = await PendingImage.findOne({ publicId });
       let srcset = '';
 
@@ -121,6 +118,7 @@ exports.postImageHook = async (req, res, next) => {
         const image = new Image({
           src,
           srcset,
+          filename,
           tags,
           publicId,
           ownerId: pendingImage.userId

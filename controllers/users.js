@@ -3,10 +3,10 @@ const User = require('../model/user.js');
 exports.getProfile = async (req, res) => {
   try {
     // cannot directly delete from req.user
-    const profile = req.user.toObject();
-    delete profile.googleId;
-    delete profile.likedImages;
-    res.send(profile);
+    // const profile = req.user.toObject();
+    // delete profile.googleId;
+    // delete profile.likedImages;
+    res.send(req.user);
   } catch (e) {
     console.log(e);
     res.status(500).send();
@@ -21,10 +21,7 @@ exports.getPublicProfile = async (req, res) => {
       return res.status(404).send('user not found');
     }
 
-    const publicProfile = user.toObject();
-    delete publicProfile.likedImages;
-    delete publicProfile.email;
-    delete publicProfile.googleId;
+    res.send(user);
   } catch (e) {
     console.error(e);
     res.status(500).send();

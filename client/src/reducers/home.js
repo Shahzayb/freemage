@@ -1,11 +1,20 @@
 import * as actionTypes from '../actions/types';
 
-const initialState = [];
+const initialState = {
+  pagination: {
+    curPage: 0,
+    hasMore: true
+  },
+  images: []
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_HOME:
-      return [...state, ...action.payload];
+      return {
+        images: [...state.images, ...action.images],
+        pagination: { ...state.pagination, ...action.pagination }
+      };
     default:
       return state;
   }

@@ -21,7 +21,6 @@ export class Gallery extends Component {
   }
 
   loadImages(page) {
-    console.log(page);
     this.props.fetchNext(page);
   }
 
@@ -29,8 +28,8 @@ export class Gallery extends Component {
     return Number.isInteger(this.state.pageStart) ? (
       <InfiniteScroll
         pageStart={this.state.pageStart}
-        loadMore={this.loadImages.bind(this)}
         hasMore={this.props.hasMore}
+        loadMore={this.loadImages.bind(this)}
         loader={
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Spinner />
@@ -43,7 +42,11 @@ export class Gallery extends Component {
             columnClassName={css.MyMasonryGridColumn}>
             {this.props.images.map(obj => (
               <div>
-                <Link to={`/images/${obj._id}`}>
+                <Link
+                  to={{
+                    pathname: `/images/${obj._id}`,
+                    state: { modal: true }
+                  }}>
                   <img
                     style={{ width: '100%', height: '100%' }}
                     src={obj.src}

@@ -1,65 +1,100 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import axios from '../../lib/axios';
+import { fetchImageById } from '../../actions/image';
 import ImageZoomer from '../../UI/ImageZoomer/ImageZoomer';
+import { ReactComponent as ArrowDown } from '../../assets/images/arrow-down.svg';
 import css from './Image.module.css';
 
-// url is /images/:id
-// retieve image data from :id param through dispatching
-const Image = props => {
-  // Sample image downloader
-  // const onDownload = () => {
-  //   axios({
-  //     // url value will be in state -- retrieve through :id param
-  //     url: 'http://localhost:5000/static/example.pdf',
-  //     method: 'GET',
-  //     responseType: 'blob' // important
-  //   }).then(response => {
-  //     const url = window.URL.createObjectURL(new Blob([response.data]));
-  //     const link = document.createElement('a');
-  //     link.href = url;
-  //     // File name will simply be image id
-  //     link.setAttribute('download', 'file.pdf');
-  //     document.body.appendChild(link);
-  //     link.click();
-  //     link.remove();
-  //   });
-  // };
+class Image extends React.Component {
+  onDownload() {
+    const id = this.props.match.params.id;
+    if (this.props.images[id].image) {
+      axios({
+        url: this.props.images[id].image.src,
+        method: 'GET',
+        responseType: 'blob',
+        transformRequest: [
+          (data, headers) => {
+            // deletes authorization default header only for this request
+            delete headers.common.Authorization;
+            return data;
+          }
+        ]
+      }).then(response => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', this.props.images[id].image.filename);
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      });
+    }
+  }
 
   // call when Like button is clicked -- will probably dispatch an action
   // const onLike = () => {};
 
-  return (
-    <>
-      <header className={css.Header}>
-        {/* future refector : to will refer to /:firstName/:id */}
-        <Link to="/users/someid" className={css.NavLink}>
-          <div className={css.Profile}>
-            <img
-              // Will recieve src from parent
-              src="https://source.unsplash.com/random/200x200?profile"
-              // add first name here
-              alt="shahzaib"
-              className={css.RoundedThumb}
+  componentDidMount() {
+    if (!this.props.images[this.props.match.params.id]) {
+      this.props.fetchImageById(this.props.match.params.id);
+    }
+  }
+
+  render() {
+    const headerStyle = this.props.modal ? {} : { marginTop: '8rem' };
+    const id = this.props.match.params.id;
+    return this.props.images[id] ? (
+      <>
+        <header style={headerStyle} className={css.Header}>
+          <Link
+            to={`/users/${this.props.images[id].user &&
+              this.props.images[id].user._id}`}
+            className={css.NavLink}>
+            <div className={css.Profile}>
+              <img
+                src={
+                  this.props.images[id].user &&
+                  this.props.images[id].user.profilePic
+                }
+                alt={
+                  this.props.images[id].user &&
+                  this.props.images[id].user.firstName
+                }
+                className={css.RoundedThumb}
+              />
+              <div className={css.Username}>
+                {this.props.images[id].user &&
+                  this.props.images[id].user.firstName}
+              </div>
+            </div>
+          </Link>
+          {/* Add image like button here */}
+          <button
+            title="Download"
+            className={css.DownloadBtn}
+            onClick={this.onDownload.bind(this)}>
+            <span id={css.Text}>Download free</span>
+            <ArrowDown
+              id={css.Symbol}
+              title="Download"
+              className={css.ArrowDown}
             />
-            {/* Add username here : first name */}
-            <div className={css.Username}>Shahzaib</div>
-          </div>
-        </Link>
+          </button>
+        </header>
+        <ImageZoomer src={this.props.images[id].image.src} />
+      </>
+    ) : null;
+  }
+}
 
-        {/* Add image like button here */}
+const mapStateToProps = state => ({ images: state.images });
 
-        {/* download original image when clicked */}
-        <button title="Download" className={css.DownloadBtn}>
-          <span id={css.Text}>Download free</span>
-          <i id={css.Symbol} className={css.ArrowDown}>
-            {/* Add Svg as ReactComponent here */}
-            {/* <img src="" alt="Download symbol" /> */}
-          </i>
-        </button>
-      </header>
-      <ImageZoomer />
-    </>
-  );
-};
+const mapDispatchToProps = { fetchImageById };
 
-export default Image;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Image);

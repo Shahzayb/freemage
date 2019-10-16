@@ -13,6 +13,10 @@ const ImageSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  filename: {
+    type: String,
+    required: true
+  },
   tags: { type: [String], index: true },
   ownerId: {
     type: mongoose.Schema.Types.ObjectId,
