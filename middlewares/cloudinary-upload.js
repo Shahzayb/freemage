@@ -36,8 +36,12 @@ const cloudinaryUpload = async (req, res, next) => {
       return pendingImage.save();
     })
     .catch(e => {
-      console.error(e);
-      // user notify : server error
+      console.error('upload error', e);
+      if (e.http_code !== 404) {
+        // upload error
+      } else {
+        // moderation error : notify the user
+      }
     });
 
   res.status(202).send();

@@ -41,7 +41,7 @@ export class Gallery extends Component {
             className={css.MyMasonryGrid}
             columnClassName={css.MyMasonryGridColumn}>
             {this.props.images.map(obj => (
-              <div>
+              <div key={obj._id}>
                 <Link
                   to={{
                     pathname: `/images/${obj._id}`,
@@ -50,6 +50,10 @@ export class Gallery extends Component {
                   <img
                     style={{ width: '100%', height: '100%' }}
                     src={obj.src}
+                    srcSet={obj.srcset}
+                    sizes="(min-width: 992px) 34vw,
+                           (max-width: 992px) 50vw,
+                           (max-width: 768px) 100vw"
                     alt=""
                   />
                 </Link>

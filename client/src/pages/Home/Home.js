@@ -7,9 +7,7 @@ import Gallery from '../../components/Gallery/Gallery';
 const Home = props => {
   return (
     <>
-      <header>
-        <Hero />
-      </header>
+      <Hero />
       <Gallery
         hasMore={props.pagination.hasMore}
         pageStart={props.pagination.curPage}

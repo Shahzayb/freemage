@@ -37,4 +37,6 @@ router.patch('/:id/like', auth, imageController.likeImage);
 
 router.patch('/:id/unlike', auth, imageController.unlikeImage);
 
+router.delete('/:id', auth, imageController.deleteImage);
+
 module.exports = router;

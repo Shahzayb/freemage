@@ -1,3 +1,5 @@
+const cloudinary = require('cloudinary').v2;
+
 const Image = require('../model/image.js');
 const PendingImage = require('../model/pending-image.js');
 const generateSrcset = require('../utils/generate-srcset.js');
@@ -5,7 +7,7 @@ const generateSrcset = require('../utils/generate-srcset.js');
 exports.getImages = async (req, res, next) => {
   try {
     const page = +(req.query.page || 1);
-    const size = +(req.query.page || 20);
+    const size = +(req.query.size || 20);
     if (!page || !size || page <= 0 || size <= 0) {
       return res.status(400).send('invalid page or size number');
     }
@@ -61,7 +63,7 @@ exports.likeImage = async (req, res) => {
       await req.user.save();
     }
 
-    res.send();
+    res.send(image);
   } catch (e) {
     console.error(e);
     res.status(500).send();
@@ -90,7 +92,7 @@ exports.unlikeImage = async (req, res) => {
       await req.user.save();
     }
 
-    res.send();
+    res.send(image);
   } catch (e) {
     console.error(e);
     res.status(500).send();
@@ -127,15 +129,40 @@ exports.postImageHook = async (req, res, next) => {
         await image.save();
 
         // notify the user that the image is uploaded
-      } else {
-        // notify the user that is image is not approved
+        await pendingImage.remove();
       }
-      await pendingImage.remove();
     }
     res.end();
   } catch (e) {
     console.error(e);
     // notify the user that the server could not upload the image
+    res.status(500).send();
+  }
+};
+
+exports.deleteImage = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const image = await Image.findById(id);
+
+    if (!image) {
+      return res.status(404).send();
+    }
+
+    if (image.ownerId.toString() !== req.user.id.toString()) {
+      return res.status(403).send('You can only delete your own images');
+    }
+
+    await image.remove();
+
+    cloudinary.uploader
+      .destroy(image.publicId)
+      .then(console.log)
+      .catch(console.log);
+
+    res.status(204).send();
+  } catch (e) {
+    console.error(e);
     res.status(500).send();
   }
 };

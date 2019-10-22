@@ -191,3 +191,9 @@
     height: 3.2rem;
   }
 }
+
+@media only screen and (max-width: 367px) {
+  .NavContainer {
+    padding: 0 1rem;
+  }
+}

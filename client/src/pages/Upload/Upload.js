@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Spinner from '../../UI/Spinner';
 import axios from '../../lib/axios';
 import uploadIconBig from '../../assets/images/upload-photo.png';
 import uploadIconSmall from '../../assets/images/upload-photo-small.png';
@@ -9,6 +10,7 @@ import css from './Upload.module.css';
 
 function Upload(props) {
   const [file, setFile] = useState();
+  const [isUploading, setIsUploading] = useState(false);
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/jpg, image/jpeg',
@@ -44,6 +46,7 @@ function Upload(props) {
   const uploadHandler = e => {
     e.preventDefault();
     if (file) {
+      setIsUploading(true);
       const formData = new FormData();
       formData.append('image', file);
       axios
@@ -52,9 +55,18 @@ function Upload(props) {
             'Content-Type': 'multipart/form-data'
           }
         })
-        .then(res => console.log('res', res))
-        .catch(e => console.log('error', e));
+        .then(res => {
+          console.log('res', res);
+        })
+        .catch(e => {
+          console.log('error', e);
+        })
+        .finally(() => {
+          setIsUploading(false);
+          setFile(null);
+        });
       console.log('upload', file);
+      // setFile();
     }
   };
 
@@ -78,7 +90,6 @@ function Upload(props) {
           className: file ? css.Dropzone : `${css.Dropzone} ${css.FullDropzone}`
         })}>
         <input {...getInputProps()} />
-        {/* bottom data will be provided by parent */}
         <div className={css.Command}>
           {uploadIcon}
 
@@ -100,13 +111,21 @@ function Upload(props) {
       </div>
       <div>{thumb}</div>
       <footer className={css.Footer}>
-        {/* click handler will be provied by parent */}
         <button
           onClick={uploadHandler}
           className={css.UploadBtn}
-          disabled={file ? false : true}
-          style={file ? {} : { cursor: 'not-allowed' }}>
-          Upload
+          disabled={file && !isUploading ? false : true}
+          style={file && !isUploading ? {} : { cursor: 'not-allowed' }}>
+          {!isUploading ? (
+            'Upload'
+          ) : (
+            <Spinner
+              width="1.6rem"
+              height="1.6rem"
+              type="Oval"
+              color="#ffffff"
+            />
+          )}
         </button>
       </footer>
     </section>
