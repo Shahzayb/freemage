@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Gallery from '../../components/Gallery/Gallery';
 
-export class SearchPhoto extends Component {
+export class SearchImage extends Component {
   render() {
     return (
       <>
@@ -12,4 +12,4 @@ export class SearchPhoto extends Component {
   }
 }
 
-export default SearchPhoto;
+export default SearchImage;

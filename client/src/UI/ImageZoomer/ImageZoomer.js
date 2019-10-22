@@ -12,7 +12,9 @@ export class ImageViewer extends Component {
 
   static defaultProps = {
     src: 'https://source.unsplash.com/random',
-    alt: ''
+    alt: '',
+    sizes: '',
+    srcset: ''
   };
 
   constructor(props) {
@@ -37,7 +39,7 @@ export class ImageViewer extends Component {
         <Image
           zoomedIn={this.state.zoomedIn}
           src={this.props.src}
-          srcset={this.props.srcset}
+          srcSet={this.props.srcSet}
           sizes={this.props.sizes}
           alt={this.props.alt}
           onClick={this.toggleZoom}

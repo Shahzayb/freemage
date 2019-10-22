@@ -31,7 +31,7 @@ exports.getPublicProfile = async (req, res) => {
 exports.getUserImages = async (req, res) => {
   try {
     const page = +(req.query.page || 1);
-    const size = +(req.query.page || 20);
+    const size = +(req.query.size || 20);
     if (!page || !size || page <= 0 || size <= 0) {
       return res.status(400).send('invalid page or size number');
     }
@@ -47,9 +47,8 @@ exports.getUserImages = async (req, res) => {
     await user
       .populate({
         path: 'images',
-        model: 'Image',
         options: {
-          // sort: { _id: -1 },
+          sort: { _id: -1 },
           skip,
           limit: size
         }

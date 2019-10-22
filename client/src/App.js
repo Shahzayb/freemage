@@ -1,14 +1,14 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
-import Startup from './components/Startup';
+import Startup from './hoc/Startup';
 import history from './lib/history';
-import ModalSwitch from './components/ModalSwitch';
+import RootRoutesMapping from './components/RootRoutesMapping';
 
 function App() {
   return (
     <Router history={history}>
       <Startup>
-        <Route component={ModalSwitch} />
+        <Route component={RootRoutesMapping} />
       </Startup>
     </Router>
   );
