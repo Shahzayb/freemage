@@ -20,16 +20,12 @@ export class Gallery extends Component {
     this.setState({ pageStart: this.props.pageStart });
   }
 
-  loadImages(page) {
-    this.props.fetchNext(page);
-  }
-
   render() {
     return Number.isInteger(this.state.pageStart) ? (
       <InfiniteScroll
         pageStart={this.state.pageStart}
         hasMore={this.props.hasMore}
-        loadMore={this.loadImages.bind(this)}
+        loadMore={this.props.fetchNext}
         loader={
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Spinner />

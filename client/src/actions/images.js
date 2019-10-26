@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions/types';
+import * as actionTypes from './types';
 import axios from '../lib/axios';
 import history from '../lib/history';
 

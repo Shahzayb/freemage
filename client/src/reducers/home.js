@@ -15,6 +15,14 @@ export default (state = initialState, action) => {
         images: [...state.images, ...action.images],
         pagination: { ...state.pagination, ...action.pagination }
       };
+    case actionTypes.DELETE_IMAGE:
+      const updateImages = state.images.filter(
+        image => image._id !== action.imageId
+      );
+      return {
+        images: updateImages,
+        pagination: { ...state.pagination }
+      };
     default:
       return state;
   }

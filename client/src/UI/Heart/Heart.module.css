@@ -6,6 +6,7 @@
   fill: rgb(221, 221, 221);
   margin-right: 1rem;
   transition: fill 0.4s;
+  cursor: pointer;
 }
 
 .Heart:not(.HeartLike):hover {
