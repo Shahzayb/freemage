@@ -27,6 +27,9 @@ exports.login = async (req, res) => {
     res.send({ user, token });
   } catch (e) {
     console.log(e);
+    if (e.code === 'ETIMEDOUT') {
+      return res.status(500).send();
+    }
     res.status(401).send();
   }
 };

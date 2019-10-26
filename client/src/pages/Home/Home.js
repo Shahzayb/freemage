@@ -9,6 +9,7 @@ const Home = props => {
     <>
       <Hero />
       <Gallery
+        {...props}
         hasMore={props.pagination.hasMore}
         pageStart={props.pagination.curPage}
         fetchNext={props.fetchHomeImages}

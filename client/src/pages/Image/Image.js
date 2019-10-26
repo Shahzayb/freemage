@@ -8,7 +8,7 @@ import {
   fetchImageById,
   toggleImageLike,
   deleteImage
-} from '../../actions/image';
+} from '../../actions/images';
 import ImageZoomer from '../../UI/ImageZoomer/ImageZoomer';
 import { ReactComponent as ArrowDownIcon } from '../../assets/images/arrow-down.svg';
 import { ReactComponent as TrashcanIcon } from '../../assets/images/trashcan.svg';

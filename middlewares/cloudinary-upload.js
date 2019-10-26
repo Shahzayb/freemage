@@ -8,15 +8,22 @@ cloudinary.config({
 });
 
 const cloudinaryUpload = async (req, res, next) => {
+  const pendingImage = new PendingImage({
+    publicId: 'freemage/' + req.user.id,
+    userId: req.user.id
+  });
+
   cloudinary.uploader
     .upload(req.file, {
+      public_id: pendingImage._id.toString(),
       moderation: 'aws_rek',
       categorization: 'aws_rek_tagging',
       auto_tagging: 0.5,
+      async: true,
       notification_url:
         process.env.CLOUDINARY_WEBHOOK_URL ||
         'https://ent7diyacvjam.x.pipedream.net/', // 3rd party webhook endpoint
-      folder: 'freemage',
+      folder: 'freemage/' + req.user.id,
 
       responsive_breakpoints: {
         create_derived: true,
@@ -28,10 +35,10 @@ const cloudinaryUpload = async (req, res, next) => {
     })
     .then(result => {
       // publicId is private until the image is approved
-      const pendingImage = new PendingImage({
-        publicId: result.public_id,
-        userId: req.user.id
-      });
+
+      pendingImage.publicId =
+        pendingImage.publicId + '/' + pendingImage._id.toString();
+
       console.log('upload result', result);
       return pendingImage.save();
     })

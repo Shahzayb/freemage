@@ -20,7 +20,10 @@ export const ensureLogin = () => async dispatch => {
         payload: { userId, profilePic, isLoggedIn, token }
       });
     } else {
-      throw new Error('login fail');
+      delete axios.defaults.headers.common['Authorization'];
+      dispatch({
+        type: actionTypes.LOGIN_FAIL
+      });
     }
   } catch (e) {
     console.error(e);

@@ -66,6 +66,9 @@ exports.likeImage = async (req, res) => {
     res.send(image);
   } catch (e) {
     console.error(e);
+    if (e.kind === 'ObjectId') {
+      return res.status(404).send();
+    }
     res.status(500).send();
   }
 };
@@ -95,6 +98,9 @@ exports.unlikeImage = async (req, res) => {
     res.send(image);
   } catch (e) {
     console.error(e);
+    if (e.kind === 'ObjectId') {
+      return res.status(404).send();
+    }
     res.status(500).send();
   }
 };
@@ -106,7 +112,7 @@ exports.postImageHook = async (req, res, next) => {
       const src = req.body.secure_url;
       const publicId = req.body.public_id;
       const filename =
-        publicId.replace('/', '-') + src.match(/\.(jpg|jpeg)$/)[0];
+        publicId.replace(/\\/g, '-') + '.' + src.match(/jpg|jpeg$/)[0];
       const pendingImage = await PendingImage.findOne({ publicId });
       let srcset = '';
 
@@ -162,6 +168,9 @@ exports.deleteImage = async (req, res) => {
 
     res.status(204).send();
   } catch (e) {
+    if (e.kind === 'ObjectId') {
+      return res.status(404).send();
+    }
     console.error(e);
     res.status(500).send();
   }
