@@ -83,6 +83,49 @@ export default (state = initialState, action) => {
           }
         }
       };
+    // case actionTypes.RESET_USER_IMAGES:
+    //   return {
+    //     ...state,
+    //     [action.userId]: {
+    //       ...state[action.userId],
+    //       imagesPage: {
+    //         images: [],
+    //         pagination: {
+    //           curPage: 0,
+    //           hasMore: true
+    //         }
+    //       },
+    //       likesPage: {
+    //         images: [...state[action.userId].likesPage.images],
+    //         pagination: {
+    //           ...state[action.userId].likesPage.pagination
+    //         }
+    //       }
+    //     }
+    //   };
+    case actionTypes.RESET_USER_LIKES:
+      if (!state[action.userId]) {
+        return state;
+      }
+      return {
+        ...state,
+        [action.userId]: {
+          ...state[action.userId],
+          imagesPage: {
+            images: [...state[action.userId].imagesPage.images],
+            pagination: {
+              ...state[action.userId].imagesPage.pagination
+            }
+          },
+          likesPage: {
+            images: [],
+            pagination: {
+              curPage: 0,
+              hasMore: true
+            }
+          }
+        }
+      };
     default:
       return state;
   }

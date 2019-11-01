@@ -9,6 +9,7 @@ import LoginPage from '../pages/Login/Login';
 import UserPage from '../pages/User/User';
 import MobileSearchPage from '../pages/MobileSearch/MobileSearch';
 import SearchImagePage from '../pages/SearchImage/SearchImage';
+import Logout from '../components/Logout';
 import Navbar from './Navbar/Navbar';
 
 class RootRoutesMapping extends React.Component {
@@ -27,6 +28,7 @@ class RootRoutesMapping extends React.Component {
             <Route exact path="/" component={HomePage} />
             <Route path="/images/:id" component={ImagePage} />
             <Route path="/login" component={LoginPage} />
+            <Route path="/logout" component={Logout} />
             <Route path="/users/:id" component={UserPage} />
             <Route path="/mobile-search" component={MobileSearchPage} />
             <Route path="/s/images/:searchTerm" component={SearchImagePage} />

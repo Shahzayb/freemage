@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { NavLink, Link, Switch, Route } from 'react-router-dom';
 import Gallery from '../../components/Gallery/Gallery';
+import Spinner from '../../UI/Spinner';
 import {
   fetchUser,
   fetchUserImages,
@@ -28,6 +29,19 @@ class User extends React.Component {
               className={css.RoundedThumb}
             />
             <div className={css.Username}>{user.name}</div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+            <Link className={css.Btn} to="/account">
+              Edit profile
+            </Link>
+            <Link className={css.Btn} to="/logout">
+              Logout
+            </Link>
           </div>
         </header>
         <nav className={css.Navbar}>
@@ -92,12 +106,17 @@ class User extends React.Component {
           />
         </Switch>
       </>
-    ) : null;
+    ) : (
+      <div className={css.SpinnerContainer}>
+        <Spinner type="TailSpin" color="#111" />
+      </div>
+    );
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  user: state.users[ownProps.match.params.id]
+  user: state.users[ownProps.match.params.id],
+  loggedUserId: state.auth.userId
 });
 
 const mapDispatchToProps = {

@@ -23,12 +23,22 @@ export default (state = initialState, action) => {
           }
         }
       };
-    case actionTypes.TOGGLE_IMAGE_LIKE:
+    case actionTypes.LIKE_IMAGE:
       return {
         ...state,
         [action.imageId]: {
           ...state[action.imageId],
-          likedBy: [...action.likes]
+          likedBy: [...state[action.imageId].likedBy, action.userId]
+        }
+      };
+    case actionTypes.UNLIKE_IMAGE:
+      return {
+        ...state,
+        [action.imageId]: {
+          ...state[action.imageId],
+          likedBy: state[action.imageId].likedBy.filter(
+            userId => userId !== action.userId
+          )
         }
       };
     case actionTypes.DELETE_IMAGE:

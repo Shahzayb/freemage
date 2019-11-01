@@ -119,12 +119,7 @@ function Upload(props) {
           {!isUploading ? (
             'Upload'
           ) : (
-            <Spinner
-              width="1.6rem"
-              height="1.6rem"
-              type="Oval"
-              color="#ffffff"
-            />
+            <Spinner width={16} height={16} type="Oval" color="#ffffff" />
           )}
         </button>
       </footer>

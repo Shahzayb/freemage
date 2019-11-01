@@ -23,6 +23,8 @@ export default (state = initialState, action) => {
       };
     case actionTypes.LOGIN_FAIL:
       return { ...initialState, loading: false };
+    case actionTypes.LOGOUT:
+      return { ...initialState, loading: false };
     default:
       return state;
   }

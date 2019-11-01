@@ -72,3 +72,21 @@ export const loginUser = grantCode => async dispatch => {
     });
   }
 };
+
+export const logoutUser = () => async dispatch => {
+  try {
+    delete axios.defaults.headers.common['Authorization'];
+    localStorage.removeItem('token');
+
+    dispatch({
+      type: actionTypes.LOGOUT
+    });
+  } catch (e) {
+    console.error(e);
+    delete axios.defaults.headers.common['Authorization'];
+    localStorage.removeItem('token');
+    dispatch({
+      type: actionTypes.LOGOUT
+    });
+  }
+};

@@ -23,21 +23,47 @@ export const fetchImageById = imageId => async dispatch => {
   }
 };
 
-export const toggleImageLike = (imageId, isLikedByMe) => async dispatch => {
+export const toggleImageLike = (
+  imageId,
+  isLikedByMe,
+  userId
+) => async dispatch => {
   try {
-    let res;
     if (isLikedByMe) {
-      res = await axios.patch(`/api/images/${imageId}/unlike`);
+      dispatch({
+        type: actionTypes.UNLIKE_IMAGE,
+        imageId,
+        userId
+      });
+      await axios.patch(`/api/images/${imageId}/unlike`);
     } else {
-      res = await axios.patch(`/api/images/${imageId}/like`);
+      dispatch({
+        type: actionTypes.LIKE_IMAGE,
+        imageId,
+        userId
+      });
+      await axios.patch(`/api/images/${imageId}/like`);
     }
     dispatch({
-      type: actionTypes.TOGGLE_IMAGE_LIKE,
-      imageId,
-      likes: res.data.likedBy
+      type: actionTypes.RESET_USER_LIKES,
+      userId
     });
   } catch (e) {
     console.error(e);
+    // in case of any error: undo like / unlike & show error to user
+    if (!isLikedByMe) {
+      dispatch({
+        type: actionTypes.UNLIKE_IMAGE,
+        imageId,
+        userId
+      });
+    } else {
+      dispatch({
+        type: actionTypes.LIKE_IMAGE,
+        imageId,
+        userId
+      });
+    }
   }
 };
 
