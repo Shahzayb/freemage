@@ -56,9 +56,9 @@ class Image extends React.Component {
     if (!this.props.loggedUserId) {
       history.push('/login');
     } else {
-      const { isLikedByMe } = this.props;
+      const { isLikedByMe, loggedUserId } = this.props;
       const { _id: imageId } = this.props.image;
-      this.props.toggleImageLike(imageId, isLikedByMe);
+      this.props.toggleImageLike(imageId, isLikedByMe, loggedUserId);
     }
   }
 

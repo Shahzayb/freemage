@@ -27,8 +27,13 @@ export class Gallery extends Component {
         hasMore={this.props.hasMore}
         loadMore={this.props.fetchNext}
         loader={
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Spinner />
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '2rem'
+            }}>
+            <Spinner type="TailSpin" color="#111" width={40} height={40} />
           </div>
         }>
         <div className={css.GridContainer}>

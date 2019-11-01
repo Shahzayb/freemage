@@ -1,4 +1,12 @@
+.SpinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
 .Profile {
+  margin-top: 12rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,6 +23,26 @@
 
 .Profile .Username {
   font-size: 2.5rem;
+}
+
+.Btn {
+  display: inline-block;
+  cursor: pointer;
+  margin: 3rem 3rem 0 0;
+  font-size: 1.6rem;
+  padding: 0.4rem 1.2rem;
+  text-decoration: none;
+  color: var(--color-text-light-grey);
+  border-radius: 3px;
+  border: 1px solid var(--color-text-light-grey);
+  transition: color 0.3s ease-in-out;
+  background-color: transparent;
+}
+
+.Btn:hover,
+.Btn:focus {
+  border: 1px solid var(--color-text-dark-grey);
+  color: var(--color-text-dark-grey);
 }
 
 .Navbar {
