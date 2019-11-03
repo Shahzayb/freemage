@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import history from '../../lib/history';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import { ReactComponent as Search } from '../../assets/images/search.svg';
 import { ReactComponent as NotificationBell } from '../../assets/images/bell.svg';
@@ -9,6 +10,15 @@ import { ReactComponent as AddPhoto } from '../../assets/images/add-photo.svg';
 import css from './Navbar.module.css';
 
 class Navbar extends React.Component {
+  onSearch(e) {
+    e.preventDefault();
+    const searchText = e.target.search.value.trim();
+    console.log(searchText);
+    if (searchText) {
+      history.push(`/s/images/${searchText}`);
+    }
+  }
+
   render() {
     return (
       <nav className={css.NavContainer}>
@@ -27,12 +37,14 @@ class Navbar extends React.Component {
 
         <div className={`${css.SearchBar} ${css.BigScreen}`}>
           <Search className={css.SearchIcon} />
-          <input
-            // add onSubmit handler here
-            type="text"
-            className={css.SearchText}
-            placeholder={'Search photos'}
-          />
+          <form onSubmit={this.onSearch.bind(this)}>
+            <input
+              name="search"
+              type="text"
+              className={css.SearchText}
+              placeholder="Search photos"
+            />
+          </form>
         </div>
         {/* only show notification when logged in */}
         {this.props.isLoggedIn ? (

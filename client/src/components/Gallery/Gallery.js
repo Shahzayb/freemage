@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroller';
 import Spinner from '../../UI/Spinner';
+import sadFaceIcon from '../../assets/images/sad-face.png';
 import Masonry from 'react-masonry-css';
 import css from './Gallery.module.css';
 
@@ -16,11 +17,24 @@ export class Gallery extends Component {
     pageStart: null
   };
 
+  static defaultProps = {
+    pageStart: 0,
+    images: []
+  };
+
   componentDidMount() {
     this.setState({ pageStart: this.props.pageStart });
   }
 
   render() {
+    if (this.props.images.length === 0 && this.props.hasMore === false) {
+      return (
+        <div className={css.NoContent}>
+          <img alt="No content available" src={sadFaceIcon} />
+        </div>
+      );
+    }
+
     return Number.isInteger(this.state.pageStart) ? (
       <InfiniteScroll
         pageStart={this.state.pageStart}
