@@ -18,7 +18,7 @@ const cloudinaryUpload = async (req, res, next) => {
       public_id: pendingImage._id.toString(),
       moderation: 'aws_rek',
       categorization: 'aws_rek_tagging',
-      auto_tagging: 0.5,
+      auto_tagging: 0.4,
       async: true,
       notification_url:
         process.env.CLOUDINARY_WEBHOOK_URL ||

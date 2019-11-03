@@ -17,3 +17,13 @@
 .MyMasonryGridColumn > div {
   margin-bottom: 1rem;
 }
+
+.NoContent {
+  margin-top: 5rem;
+  height: 20rem;
+  text-align: center;
+}
+
+.NoContent img {
+  height: 100%;
+}
