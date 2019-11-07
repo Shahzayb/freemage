@@ -5,6 +5,9 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import rootReducer from './reducers/';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
@@ -13,6 +16,16 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+toast.configure({
+  position: 'top-center',
+  autoClose: false,
+  newestOnTop: true,
+  closeOnClick: true,
+  rtl: false,
+  pauseOnVisibilityChange: true,
+  draggable: true
+});
 
 ReactDOM.render(
   <Provider store={store}>

@@ -16,7 +16,7 @@ export const fetchHomeImages = nextPage => async dispatch => {
         hasMore: data.length === PAGE_SIZE ? true : false
       }
     });
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
   }
 };

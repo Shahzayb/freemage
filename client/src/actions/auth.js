@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import * as actionTypes from '../actions/types';
 import axios from '../lib/axios';
 
@@ -63,8 +64,22 @@ export const loginUser = grantCode => async dispatch => {
       type: actionTypes.LOGIN_SUCCESS,
       payload: { userId, profilePic, isLoggedIn, token }
     });
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
+
+    if (error.response) {
+      if (error.response.status === 401) {
+        toast.error('You are not authorized to login');
+      } else {
+        toast.error('Login service is not available right now');
+      }
+    } else if (error.request) {
+      toast.error('REQUEST TIMEOUT');
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.error('Request Setup Error', error.message);
+    }
+
     delete axios.defaults.headers.common['Authorization'];
     localStorage.removeItem('token');
     dispatch({
@@ -85,8 +100,5 @@ export const logoutUser = () => async dispatch => {
     console.error(e);
     delete axios.defaults.headers.common['Authorization'];
     localStorage.removeItem('token');
-    dispatch({
-      type: actionTypes.LOGOUT
-    });
   }
 };

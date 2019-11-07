@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 import Spinner from '../../UI/Spinner';
 import axios from '../../lib/axios';
 import uploadIconBig from '../../assets/images/upload-photo.png';
@@ -56,17 +57,30 @@ function Upload(props) {
           }
         })
         .then(res => {
-          console.log('res', res);
+          toast.success(
+            'Server accepted your photo. You will get notified of approval'
+          );
         })
-        .catch(e => {
-          console.log('error', e);
+        .catch(error => {
+          console.error(error);
+
+          if (error.response) {
+            if (error.response.status === 401) {
+              toast.error('You are not authorized to upload');
+            } else {
+              toast.error('Upload service is not available right now');
+            }
+          } else if (error.request) {
+            toast.error('REQUEST TIMEOUT: Your connection is slow');
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            toast.error('Failed to upload an image');
+          }
         })
         .finally(() => {
           setIsUploading(false);
           setFile(null);
         });
-      console.log('upload', file);
-      // setFile();
     }
   };
 

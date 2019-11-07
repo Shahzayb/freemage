@@ -3,10 +3,12 @@ import GoogleLogin from 'react-google-login';
 import css from './GoogleLogin.module.css';
 
 export default props => {
-  // in future this will dispatch login action
-  const responseGoogle = async authResult => {
-    console.log(authResult);
+  const successHandler = async authResult => {
     props.loginUser(authResult['code']);
+  };
+
+  const failureHandler = e => {
+    console.log('Error', e);
   };
 
   return (
@@ -19,8 +21,8 @@ export default props => {
         buttonText="Login with Google"
         responseType="code"
         redirectUri="postmessage"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
+        onSuccess={successHandler}
+        onFailure={failureHandler}
       />
     </div>
   );

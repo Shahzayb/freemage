@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import * as actionTypes from './types';
 import axios from '../lib/axios';
 import history from '../lib/history';
@@ -18,8 +19,20 @@ export const fetchImageById = imageId => async dispatch => {
       user,
       image
     });
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
+
+    if (error.response) {
+      if (error.response.status === 404) {
+        toast.error('Image is not found');
+      } else {
+        toast.error('service is not available right now');
+      }
+    } else if (error.request) {
+      toast.error('REQUEST TIMEOUT');
+    } else {
+      toast.error('could not retrieve image');
+    }
   }
 };
 
