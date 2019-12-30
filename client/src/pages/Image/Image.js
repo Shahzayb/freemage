@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import GoogleAnalytics from 'react-ga';
 import axios from '../../lib/axios';
 import history from '../../lib/history';
 import {
@@ -9,14 +9,14 @@ import {
   toggleImageLike,
   deleteImage
 } from '../../actions/images';
-import ImageZoomer from '../../UI/ImageZoomer/ImageZoomer';
+import Image from '../../UI/Image';
 import { ReactComponent as ArrowDownIcon } from '../../assets/images/arrow-down.svg';
 import { ReactComponent as TrashcanIcon } from '../../assets/images/trashcan.svg';
 import Heart from '../../UI/Heart/Heart';
 import Spinner from '../../UI/Spinner';
 import css from './Image.module.css';
 
-class Image extends React.Component {
+class ImagePage extends React.Component {
   onDownload() {
     const image = this.props.image;
     if (image) {
@@ -41,6 +41,10 @@ class Image extends React.Component {
         link.remove();
       });
     }
+    GoogleAnalytics.event({
+      category: 'User',
+      action: 'Image download'
+    });
   }
 
   async onDelete() {
@@ -59,6 +63,10 @@ class Image extends React.Component {
       const { isLikedByMe, loggedUserId } = this.props;
       const { _id: imageId } = this.props.image;
       this.props.toggleImageLike(imageId, isLikedByMe, loggedUserId);
+      GoogleAnalytics.event({
+        category: 'User',
+        action: isLikedByMe ? 'Unliked the image' : 'Liked the image'
+      });
     }
   }
 
@@ -99,7 +107,8 @@ class Image extends React.Component {
             <button
               title="Delete"
               className={css.DeleteBtn}
-              onClick={this.onDelete.bind(this)}>
+              onClick={this.onDelete.bind(this)}
+            >
               <span id={css.Text}>Delete image</span>
               <TrashcanIcon
                 id={css.Symbol}
@@ -112,7 +121,8 @@ class Image extends React.Component {
           <button
             title="Download"
             className={css.DownloadBtn}
-            onClick={this.onDownload.bind(this)}>
+            onClick={this.onDownload.bind(this)}
+          >
             <span id={css.Text}>Download free</span>
             <ArrowDownIcon
               id={css.Symbol}
@@ -121,7 +131,7 @@ class Image extends React.Component {
             />
           </button>
         </header>
-        <ImageZoomer src={image.src} srcSet={image.srcset} />
+        <Image publicId={image.publicId} alt={image.tags.join(' ')} />
       </>
     );
   }
@@ -146,7 +156,4 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = { fetchImageById, toggleImageLike, deleteImage };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Image);
+export default connect(mapStateToProps, mapDispatchToProps)(ImagePage);

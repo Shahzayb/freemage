@@ -4,11 +4,13 @@ import Startup from './hoc/Startup';
 import history from './lib/history';
 import RootRoutesMapping from './components/RootRoutesMapping';
 
+import withTracker from './hoc/withTracker';
+
 function App() {
   return (
     <Router history={history}>
       <Startup>
-        <Route component={RootRoutesMapping} />
+        <Route component={withTracker(RootRoutesMapping)} />
       </Startup>
     </Router>
   );

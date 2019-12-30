@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import rootReducer from './reducers/';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import ErrorBoundary from './hoc/ErrorBoundary';
 
 const store = createStore(
   rootReducer,
@@ -28,9 +29,11 @@ toast.configure({
 });
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ErrorBoundary>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ErrorBoundary>,
   document.getElementById('root')
 );
 

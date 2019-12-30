@@ -1,23 +1,33 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Modal from '../UI/Modal/Modal';
 import withInsideModal from '../hoc/withInsideModal';
-import HomePage from '../pages/Home/Home';
-import ImagePage from '../pages/Image/Image';
-import UploadPage from '../pages/Upload/Upload';
-import LoginPage from '../pages/Login/Login';
-import UserPage from '../pages/User/User';
-import MobileSearchPage from '../pages/MobileSearch/MobileSearch';
-import SearchImagePage from '../pages/SearchImage/SearchImage';
-import Logout from '../components/Logout';
 import Navbar from './Navbar/Navbar';
+import Loading from '../pages/Loading/Loading';
+
+// import UploadPage from '../pages/Upload/Upload';
+// import Modal from '../UI/Modal/Modal';
+// const foo = React.lazy(() => import(''));
+const UploadPage = React.lazy(() => import('../pages/Upload/Upload'));
+const Modal = React.lazy(() => import('../UI/Modal/Modal'));
+const LogoutPage = React.lazy(() => import('../components/Logout'));
+const HomePage = React.lazy(() => import('../pages/Home/Home'));
+const ImagePage = React.lazy(() => import('../pages/Image/Image'));
+const LoginPage = React.lazy(() => import('../pages/Login/Login'));
+const UserPage = React.lazy(() => import('../pages/User/User'));
+const MobileSearchPage = React.lazy(() =>
+  import('../pages/MobileSearch/MobileSearch')
+);
+const SearchImagePage = React.lazy(() =>
+  import('../pages/SearchImage/SearchImage')
+);
+const AccountPage = React.lazy(() => import('../pages/Account/Account'));
 
 class RootRoutesMapping extends React.Component {
   render() {
     const { inModal, previousLocation, location } = this.props;
 
     return (
-      <>
+      <Suspense fallback={<Loading />}>
         {/* height of navbar is 6.5rem or 65 px */}
         <Navbar />
 
@@ -28,17 +38,15 @@ class RootRoutesMapping extends React.Component {
             <Route exact path="/" component={HomePage} />
             <Route path="/images/:id" component={ImagePage} />
             <Route path="/login" component={LoginPage} />
-            <Route path="/logout" component={Logout} />
+            <Route path="/logout" component={LogoutPage} />
             <Route path="/users/:id" component={UserPage} />
             <Route path="/mobile-search" component={MobileSearchPage} />
             <Route path="/s/images/:searchTerm" component={SearchImagePage} />
+            <Route path="/account" component={AccountPage} />
           </Switch>
 
-          {/* Upload page will always render inside modal */}
-          <Route
-            path="/upload"
-            render={props => <Modal {...props} component={UploadPage} />}
-          />
+          {/* path "/upload" will render inside modal */}
+          <Route exact path="/upload" component={UploadPage} />
 
           {inModal ? (
             <Route
@@ -47,7 +55,7 @@ class RootRoutesMapping extends React.Component {
             />
           ) : null}
         </div>
-      </>
+      </Suspense>
     );
   }
 }

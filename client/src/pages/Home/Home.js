@@ -3,15 +3,17 @@ import { connect } from 'react-redux';
 import { fetchHomeImages } from '../../actions/home';
 import Hero from '../../components/Hero/Hero';
 import Gallery from '../../components/Gallery/Gallery';
+import css from './Home.module.css';
 
 const Home = props => {
   return (
     <>
       <Hero />
+      <h1 className={css.Heading}>Recent Images</h1>
+      <hr />
       <Gallery
-        {...props}
+        curPage={props.pagination.curPage}
         hasMore={props.pagination.hasMore}
-        pageStart={props.pagination.curPage}
         fetchNext={props.fetchHomeImages}
         images={props.images}
       />
@@ -26,7 +28,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = { fetchHomeImages };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

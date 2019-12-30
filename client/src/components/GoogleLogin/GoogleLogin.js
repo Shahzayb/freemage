@@ -23,6 +23,7 @@ export default props => {
         redirectUri="postmessage"
         onSuccess={successHandler}
         onFailure={failureHandler}
+        cookiePolicy={'single_host_origin'}
       />
     </div>
   );

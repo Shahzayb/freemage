@@ -2,10 +2,6 @@ const User = require('../model/user.js');
 
 exports.getProfile = async (req, res) => {
   try {
-    // cannot directly delete from req.user
-    // const profile = req.user.toObject();
-    // delete profile.googleId;
-    // delete profile.likedImages;
     res.send(req.user);
   } catch (e) {
     console.log(e);

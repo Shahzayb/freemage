@@ -1,8 +1,6 @@
 const cloudinary = require('cloudinary').v2;
 
 const Image = require('../model/image.js');
-const PendingImage = require('../model/pending-image.js');
-const generateSrcset = require('../utils/generate-srcset.js');
 
 exports.getImages = async (req, res, next) => {
   try {
@@ -13,15 +11,22 @@ exports.getImages = async (req, res, next) => {
     }
 
     const skip = size * (page - 1);
-    let selectQuery = {};
+    let selectQuery = { approved: true };
 
     if (req.query.q) {
-      const keywords = req.query.q.split(' ');
-      selectQuery = { tags: { $in: keywords } };
+      const keywords = req.query.q
+        .split(' ')
+        .map(keyword => keyword.trim().toLowerCase());
+      console.log(keywords);
+      selectQuery.tags = {
+        $in: keywords
+      };
     }
 
     const images = await Image.find(selectQuery)
-      .sort({ _id: -1 })
+      .sort({
+        _id: -1
+      })
       .skip(skip)
       .limit(size);
     res.send(images);
@@ -33,7 +38,7 @@ exports.getImages = async (req, res, next) => {
 
 exports.getImageById = async (req, res) => {
   try {
-    let image = await Image.findById(req.params.id);
+    let image = await Image.findOne({ _id: req.params.id, approved: true });
     if (!image) {
       return res.status(404).send('image not found');
     }
@@ -47,7 +52,7 @@ exports.getImageById = async (req, res) => {
 
 exports.likeImage = async (req, res) => {
   try {
-    const image = await Image.findById(req.params.id);
+    const image = await Image.findOne({ _id: req.params.id, approved: true });
     if (!image) {
       return res.status(404).send('image not found');
     }
@@ -75,7 +80,7 @@ exports.likeImage = async (req, res) => {
 
 exports.unlikeImage = async (req, res) => {
   try {
-    const image = await Image.findById(req.params.id);
+    const image = await Image.findOne({ _id: req.params.id, approved: true });
     if (!image) {
       return res.status(404).send('image not found');
     }
@@ -105,51 +110,9 @@ exports.unlikeImage = async (req, res) => {
   }
 };
 
-exports.postImageHook = async (req, res, next) => {
-  try {
-    if (req.body.notification_type === 'upload') {
-      const tags = req.body.tags;
-      const src = req.body.secure_url;
-      const publicId = req.body.public_id;
-      const filename =
-        publicId.replace(/\\/g, '-') + '.' + src.match(/jpg|jpeg$/)[0];
-      const pendingImage = await PendingImage.findOne({ publicId });
-      let srcset = '';
-
-      if (!pendingImage) {
-        return res.status(422).send('invalid request');
-      }
-
-      if (req.body.moderation[0].status === 'approved') {
-        // save the image and notify the user that the image is available
-        srcset = generateSrcset(req.body.responsive_breakpoints[0].breakpoints);
-        const image = new Image({
-          src,
-          srcset,
-          filename,
-          tags,
-          publicId,
-          ownerId: pendingImage.userId
-        });
-
-        await image.save();
-
-        // notify the user that the image is uploaded
-        await pendingImage.remove();
-      }
-    }
-    res.end();
-  } catch (e) {
-    console.error(e);
-    // notify the user that the server could not upload the image
-    res.status(500).send();
-  }
-};
-
 exports.deleteImage = async (req, res) => {
   try {
-    const id = req.params.id;
-    const image = await Image.findById(id);
+    const image = await Image.findOne({ _id: req.params.id, approved: true });
 
     if (!image) {
       return res.status(404).send();

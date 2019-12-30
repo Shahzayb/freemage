@@ -35,7 +35,8 @@ class User extends React.Component {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center'
-            }}>
+            }}
+          >
             <Link className={css.Btn} to="/account">
               Edit profile
             </Link>
@@ -51,7 +52,8 @@ class User extends React.Component {
                 exact
                 activeClassName={css.NavLinkActive}
                 className={css.NavLink}
-                to={`/users/${user._id}`}>
+                to={`/users/${user._id}`}
+              >
                 Images
               </NavLink>
             </li>
@@ -60,7 +62,8 @@ class User extends React.Component {
                 exact
                 activeClassName={css.NavLinkActive}
                 className={css.NavLink}
-                to={`/users/${user._id}/likes`}>
+                to={`/users/${user._id}/likes`}
+              >
                 Liked Images
               </NavLink>
             </li>
@@ -70,12 +73,12 @@ class User extends React.Component {
           <Route
             exact
             path={this.props.match.path}
-            component={props => {
+            render={props => {
               const imagesPage = this.props.user.imagesPage;
               return imagesPage ? (
                 <Gallery
+                  curPage={imagesPage.pagination.curPage}
                   hasMore={imagesPage.pagination.hasMore}
-                  pageStart={imagesPage.pagination.curPage}
                   fetchNext={page =>
                     this.props.fetchUserImages(page, this.props.match.params.id)
                   }
@@ -87,12 +90,12 @@ class User extends React.Component {
           <Route
             exact
             path={this.props.match.path + '/likes'}
-            component={props => {
+            render={props => {
               const likesPage = this.props.user.likesPage;
               return likesPage ? (
                 <Gallery
+                  curPage={likesPage.pagination.curPage}
                   hasMore={likesPage.pagination.hasMore}
-                  pageStart={likesPage.pagination.curPage}
                   fetchNext={page =>
                     this.props.fetchUserLikedImages(
                       page,
@@ -125,7 +128,4 @@ const mapDispatchToProps = {
   fetchUserLikedImages
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(User);
+export default connect(mapStateToProps, mapDispatchToProps)(User);

@@ -23,6 +23,7 @@ export class SearchImage extends Component {
         </header>
         <hr />
         <Gallery
+          curPage={searchData ? searchData.pagination.curPage : 0}
           hasMore={searchData ? searchData.pagination.hasMore : true}
           fetchNext={this.loadImages.bind(this)}
           images={searchData ? searchData.images : []}
@@ -34,15 +35,17 @@ export class SearchImage extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const searchTerm = ownProps.match.params.searchTerm.trim();
+  let searchData = state.search;
+
+  if (searchData.searchTerm !== searchTerm) {
+    searchData = null;
+  }
   return {
     searchTerm,
-    searchData: state.search[searchTerm]
+    searchData
   };
 };
 
 const mapDispatchToProps = { searchImage };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchImage);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchImage);

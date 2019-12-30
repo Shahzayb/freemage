@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/types';
 const initialState = {
   userId: null,
   token: null,
+  userStreamToken: null,
   isLoggedIn: false,
   profilePic: null,
   loading: true

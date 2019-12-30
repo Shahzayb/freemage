@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
-const DB_URL = process.env.DB_URL || 'mongodb://localhost/Freemage';
+const { DB_URL } = process.env;
 
 mongoose
   .connect(DB_URL, {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useUnifiedTopology: true
   })
   .catch(err => {
     console.error("couldn't connect to the database", err);

@@ -64,3 +64,5 @@ typings/
 .idea
 
 config/dev.env
+
+.prettierrc.json

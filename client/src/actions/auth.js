@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import GoogleAnalytics from 'react-ga';
 import * as actionTypes from '../actions/types';
 import axios from '../lib/axios';
 
@@ -16,9 +17,13 @@ export const ensureLogin = () => async dispatch => {
       const userId = res.data._id;
       const profilePic = res.data.profilePic;
       const isLoggedIn = true;
+      const userStreamToken = res.data.userStreamToken;
+
+      GoogleAnalytics.set({ userId });
+
       dispatch({
         type: actionTypes.LOGIN_SUCCESS,
-        payload: { userId, profilePic, isLoggedIn, token }
+        payload: { userId, profilePic, isLoggedIn, token, userStreamToken }
       });
     } else {
       delete axios.defaults.headers.common['Authorization'];
@@ -55,14 +60,17 @@ export const loginUser = grantCode => async dispatch => {
     const profilePic = res.data.user.profilePic;
     const isLoggedIn = true;
     const token = res.data.token;
+    const userStreamToken = res.data.userStreamToken;
 
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
     localStorage.setItem('token', token);
 
+    GoogleAnalytics.set({ userId });
+
     dispatch({
       type: actionTypes.LOGIN_SUCCESS,
-      payload: { userId, profilePic, isLoggedIn, token }
+      payload: { userId, profilePic, isLoggedIn, token, userStreamToken }
     });
   } catch (error) {
     console.error(error);

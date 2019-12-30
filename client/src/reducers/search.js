@@ -1,28 +1,29 @@
 import * as actionTypes from '../actions/types';
 
-const initialState = {};
+const initialState = {
+  searchTerm: '',
+  images: [],
+  pagination: {}
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SEARCH_IMAGE:
-      if (!state[action.searchTerm]) {
+      if (state.searchTerm !== action.searchTerm) {
         return {
-          ...state,
-          [action.searchTerm]: {
-            pagination: { ...action.pagination },
-            images: [...action.images]
+          searchTerm: action.searchTerm,
+          images: [...action.images],
+          pagination: {
+            ...action.pagination
           }
         };
       } else {
         return {
           ...state,
-          [action.searchTerm]: {
-            ...state[action.searchTerm],
-            pagination: {
-              ...state[action.searchTerm].pagination,
-              ...action.pagination
-            },
-            images: [...state[action.searchTerm].images, ...action.images]
+          images: [...state.images, ...action.images],
+          pagination: {
+            ...state.pagination,
+            ...action.pagination
           }
         };
       }

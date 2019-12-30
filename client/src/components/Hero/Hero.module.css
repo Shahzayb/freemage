@@ -1,9 +1,9 @@
 .Hero {
   min-height: 400px;
-  height: 70vh;
+  height: 60vh;
   width: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url('../../assets/images/hero.jpg');
+    url('https://res.cloudinary.com/shahzayb/image/upload/f_auto,fl_progressive,q_1/v1575756923/freemage/5de023282b6ffb282823c1eb/fgbwpsymxwkqblh9fmop.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

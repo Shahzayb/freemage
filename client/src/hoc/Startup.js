@@ -9,7 +9,12 @@ export class Startup extends Component {
   }
 
   render() {
-    return this.props.loading ? <Loading /> : this.props.children;
+    return (
+      <>
+        {this.props.loading ? <Loading /> : null}
+        {this.props.children}
+      </>
+    );
   }
 }
 
@@ -19,7 +24,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = { ensureLogin };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Startup);
+export default connect(mapStateToProps, mapDispatchToProps)(Startup);
