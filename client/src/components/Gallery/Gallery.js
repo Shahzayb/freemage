@@ -35,6 +35,7 @@ export class Gallery extends Component {
         loadMore={this.loadMore.bind(this)}
         loader={
           <div
+            key="loader"
             style={{
               display: 'flex',
               justifyContent: 'center',

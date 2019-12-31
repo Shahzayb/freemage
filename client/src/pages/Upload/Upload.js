@@ -89,8 +89,12 @@ export class Upload extends Component {
               history.push('/');
             }
             if (info.event === 'success') {
-              toast.success('Image is successfuly uploaded.');
-              toast.info('Please refresh your browser to view image.');
+              if (info.info.moderation[0].status === 'rejected') {
+                toast.error('Your image is rejected.');
+              } else {
+                toast.success('Image is successfuly uploaded.');
+                toast.info('Please refresh your browser to view image.');
+              }
               GoogleAnalytics.event({
                 category: 'User',
                 action: 'Image upload'
