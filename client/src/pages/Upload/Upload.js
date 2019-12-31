@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import GoogleAnalytics from 'react-ga';
+import { Helmet } from 'react-helmet';
 import { toast } from 'react-toastify';
 import history from '../../lib/history';
 
@@ -110,7 +111,10 @@ export class Upload extends Component {
   }
 
   render() {
-    return this.props.isLoggedIn ? null : <Redirect to="/" />;
+    return this.props.isLoggedIn ?  <Helmet>
+        <title>Freemage - upload image</title>
+        <meta name="description" content="Upload your work" />
+      </Helmet> : <Redirect to="/" />;
   }
 }
 

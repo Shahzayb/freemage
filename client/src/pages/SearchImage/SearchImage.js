@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import { searchImage } from '../../actions/search';
 import Gallery from '../../components/Gallery/Gallery';
 import css from './SearchImage.module.css';
@@ -12,9 +13,14 @@ export class SearchImage extends Component {
 
   render() {
     const { searchTerm, searchData } = this.props;
+     const head = <Helmet>
+        <title>Freemage - Search image</title>
+        <meta name="description" content="Search any image by their tags" />
+      </Helmet>
 
     return (
       <>
+      {head}
         <header className={css.Header}>
           <h1>
             Search result for :{'  '}

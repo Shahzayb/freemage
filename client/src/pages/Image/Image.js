@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import GoogleAnalytics from 'react-ga';
+import { Helmet } from 'react-helmet';
 import axios from '../../lib/axios';
 import history from '../../lib/history';
 import {
@@ -78,13 +79,21 @@ class ImagePage extends React.Component {
 
   render() {
     const { image, isLoading } = this.props;
+    const head = <Helmet>
+        <title>Freemage - Image viewer</title>
+        <meta name="description" content="View image in more details" />
+      </Helmet>
 
     return isLoading ? (
+      <>
+      {head}
       <div className={css.SpinnerContainer}>
         <Spinner type="TailSpin" color="#111" />
       </div>
+      </>
     ) : (
       <>
+      {head}
         <header className={css.Header}>
           <Link to={`/users/${image.user._id}`} className={css.NavLink}>
             <div className={css.Profile}>

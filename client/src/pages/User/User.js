@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink, Link, Switch, Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import Gallery from '../../components/Gallery/Gallery';
 import Spinner from '../../UI/Spinner';
 import {
@@ -19,8 +20,13 @@ class User extends React.Component {
 
   render() {
     const user = this.props.user;
+     const head = <Helmet>
+        <title>Freemage - User images and likes</title>
+        <meta name="description" content="View your images and likes" />
+      </Helmet>
     return user ? (
       <>
+      {head}
         <header>
           <div className={css.Profile}>
             <img
@@ -111,6 +117,7 @@ class User extends React.Component {
       </>
     ) : (
       <div className={css.SpinnerContainer}>
+        {head}
         <Spinner type="TailSpin" color="#111" />
       </div>
     );
