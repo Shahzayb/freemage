@@ -13,7 +13,6 @@ class Navbar extends React.Component {
   onSearch(e) {
     e.preventDefault();
     const searchText = e.target.search.value.trim();
-    console.log(searchText);
     if (searchText) {
       history.push(`/s/images/${searchText}`);
     }

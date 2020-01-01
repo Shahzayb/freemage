@@ -4,9 +4,6 @@ import withInsideModal from '../hoc/withInsideModal';
 import Navbar from './Navbar/Navbar';
 import Loading from '../pages/Loading/Loading';
 
-// import UploadPage from '../pages/Upload/Upload';
-// import Modal from '../UI/Modal/Modal';
-// const foo = React.lazy(() => import(''));
 const UploadPage = React.lazy(() => import('../pages/Upload/Upload'));
 const Modal = React.lazy(() => import('../UI/Modal/Modal'));
 const LogoutPage = React.lazy(() => import('../components/Logout'));

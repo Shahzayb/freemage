@@ -15,7 +15,6 @@ const breakpointColumnsObj = {
 
 export class Gallery extends Component {
   loadMore(page) {
-    console.log('page', page, 'curPage', this.props.curPage);
     this.props.fetchNext(this.props.curPage + 1);
   }
 
