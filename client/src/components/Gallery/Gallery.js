@@ -60,7 +60,6 @@ export class Gallery extends Component {
                   }}
                 >
                   <Image
-                    src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"
                     publicId={obj.publicId}
                     sizes="(min-width: 992px) 34vw,
                            (max-width: 992px) 50vw,
