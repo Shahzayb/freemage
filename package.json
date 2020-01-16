@@ -8,14 +8,14 @@
     "client": "npm start --prefix client",
     "server": "nodemon app.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "test": "jest"
   },
   "dependencies": {
     "cloudinary": "^1.14.0",
     "compression": "^1.7.4",
     "concurrently": "^4.1.2",
     "cors": "^2.8.5",
-    "datauri": "^2.0.0",
     "debug": "^2.6.9",
     "express": "^4.16.4",
     "google-auth-library": "^5.2.2",
@@ -27,7 +27,9 @@
   "main": "app.js",
   "devDependencies": {
     "dotenv": "^8.0.0",
-    "nodemon": "^1.19.1"
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
   },
   "keywords": [
     "image upload",
