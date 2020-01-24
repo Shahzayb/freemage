@@ -3,13 +3,23 @@
   "version": "0.1.0",
   "description": "Image sharing app",
   "private": true,
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/__tests__/db.js"
+    ]
+  },
   "scripts": {
     "start": "node app.js",
     "client": "npm start --prefix client",
-    "server": "nodemon app.js",
+    "server": "nodemon --ignore __tests__/ app.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "test": "jest"
+    "test": "jest --detectOpenHandles --runInBand"
   },
   "dependencies": {
     "cloudinary": "^1.14.0",
@@ -27,7 +37,8 @@
   "main": "app.js",
   "devDependencies": {
     "dotenv": "^8.0.0",
-    "jest": "^24.9.0",
+    "jest": "^24.8.0",
+    "mongodb-memory-server": "^6.2.3",
     "nodemon": "^1.19.1",
     "supertest": "^4.0.2"
   },

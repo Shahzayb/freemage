@@ -6,16 +6,13 @@ const client = new OAuth2Client(
   'postmessage'
 );
 
-exports.getIdToken = async code => {
+exports.getPayload = async code => {
   const r = await client.getToken(code);
 
   // Make sure to set the credentials on the OAuth2 client.
   client.setCredentials(r.tokens);
 
-  return r.tokens.id_token;
-};
-
-exports.getPayload = async idToken => {
+  const idToken = r.tokens.id_token;
   const ticket = await client.verifyIdToken({
     idToken,
     audience: process.env.CLIENT_ID

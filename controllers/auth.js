@@ -5,8 +5,7 @@ const User = require('../model/user.js');
 exports.login = async (req, res) => {
   try {
     const code = req.body.code;
-    const r = await googleAuth.getIdToken(code);
-    const profile = await googleAuth.getPayload(r);
+    const profile = await googleAuth.getPayload(code);
 
     let user = await User.findOne({ googleId: profile.sub });
 
@@ -27,9 +26,7 @@ exports.login = async (req, res) => {
     res.send({ user, token });
   } catch (e) {
     console.log(e);
-    if (e.code === 'ETIMEDOUT') {
-      return res.status(500).send();
-    }
+
     res.status(401).send();
   }
 };

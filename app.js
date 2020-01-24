@@ -8,12 +8,18 @@ const compression = require('compression');
  */
 if (process.env.NODE_ENV !== 'production') {
   const path = require('path');
-  require('dotenv').config({ path: path.join(__dirname, '/config/dev.env') });
+  const config = {};
+  if (process.env.NODE_ENV === 'test') {
+    config.path = path.join(__dirname, '/config/test.env');
+  } else {
+    config.path = path.join(__dirname, '/config/dev.env');
+  }
+  require('dotenv').config(config);
 }
 
-require('./data/index'); // connecting to database
-// require('./stream'); // init notification stream
-
+if (process.env.NODE_ENV !== 'test') {
+  require('./data/index'); // connecting to database
+}
 const imagesRoute = require('./routes/images.js');
 const authRouter = require('./routes/auth.js');
 const usersRouter = require('./routes/users.js');
@@ -41,6 +47,10 @@ if (process.env.NODE_ENV === 'production') {
   );
 }
 
-const PORT = process.env.PORT || '5000';
+if (process.env.NODE_ENV !== 'test') {
+  const PORT = process.env.PORT || '5000';
 
-app.listen(PORT, () => console.log(`server started on port ${PORT}`));
+  app.listen(PORT, () => console.log(`server started on port ${PORT}`));
+} else {
+  module.exports = app;
+}

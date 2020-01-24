@@ -21,10 +21,10 @@ module.exports = (req, res, next) => {
     // );
 
     if (computedSig === reqSig) {
-      console.log('valid');
+      // console.log('valid');
       next();
     } else {
-      console.log('invalid');
+      // console.log('invalid');
       res.status(422).send();
     }
   } catch (error) {
