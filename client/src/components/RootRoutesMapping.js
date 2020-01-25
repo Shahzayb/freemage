@@ -17,6 +17,9 @@ const MobileSearchPage = React.lazy(() =>
 const SearchImagePage = React.lazy(() =>
   import('../pages/SearchImage/SearchImage')
 );
+const SearchUserPage = React.lazy(() =>
+  import('../pages/SearchUser/SearchUser')
+);
 const AccountPage = React.lazy(() => import('../pages/Account/Account'));
 const NotFound = React.lazy(() => import('../pages/NotFound/NotFound'));
 
@@ -40,6 +43,7 @@ class RootRoutesMapping extends React.Component {
             <Route path="/users/:id" component={UserPage} />
             <Route path="/mobile-search" component={MobileSearchPage} />
             <Route path="/s/images/:searchTerm" component={SearchImagePage} />
+            <Route path="/s/users/:searchTerm" component={SearchUserPage} />
             <Route path="/account" component={AccountPage} />
             <Route component={NotFound} />
           </Switch>

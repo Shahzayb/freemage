@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { searchImage } from '../../actions/search';
-import Gallery from '../../components/Gallery/Gallery';
-import css from './SearchImage.module.css';
+import { searchUser } from '../../actions/search';
+import UserList from '../../components/UserList/UserList';
+import css from './SearchUser.module.css';
 
-export class SearchImage extends Component {
-  loadImages(page) {
-    const { searchTerm, searchImage } = this.props;
-    searchImage(page, searchTerm);
+export class SearchUser extends Component {
+  loadUsers(page) {
+    const { searchTerm, searchUser } = this.props;
+    searchUser(page, searchTerm);
   }
 
   render() {
     const { searchTerm, searchData } = this.props;
     const head = (
       <Helmet>
-        <title>Freemage - Search image</title>
-        <meta name="description" content="Search any image by their tags" />
+        <title>Freemage - Search user</title>
+        <meta name="description" content="Search any user by their full name" />
       </Helmet>
     );
 
@@ -55,11 +55,11 @@ export class SearchImage extends Component {
           </ul>
         </nav>
         <hr />
-        <Gallery
-          curPage={searchData ? searchData.imagePagination.curPage : 0}
-          hasMore={searchData ? searchData.imagePagination.hasMore : true}
-          fetchNext={this.loadImages.bind(this)}
-          images={searchData ? searchData.images : []}
+        <UserList
+          curPage={searchData ? searchData.userPagination.curPage : 0}
+          hasMore={searchData ? searchData.userPagination.hasMore : true}
+          fetchNext={this.loadUsers.bind(this)}
+          users={searchData ? searchData.users : []}
         />
       </>
     );
@@ -70,7 +70,7 @@ const mapStateToProps = (state, ownProps) => {
   const searchTerm = ownProps.match.params.searchTerm.trim();
   let searchData = state.search;
 
-  if (searchData.imageSearchTerm !== searchTerm) {
+  if (searchData.userSearchTerm !== searchTerm) {
     searchData = null;
   }
   return {
@@ -79,6 +79,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = { searchImage };
+const mapDispatchToProps = { searchUser };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchImage);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchUser);

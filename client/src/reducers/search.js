@@ -1,29 +1,51 @@
 import * as actionTypes from '../actions/types';
 
 const initialState = {
-  searchTerm: '',
+  imageSearchTerm: '',
   images: [],
-  pagination: {}
+  imagePagination: {},
+  userSearchTerm: '',
+  users: [],
+  userPagination: {}
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SEARCH_IMAGE:
-      if (state.searchTerm !== action.searchTerm) {
+      if (state.imageSearchTerm !== action.imageSearchTerm) {
         return {
-          searchTerm: action.searchTerm,
+          imageSearchTerm: action.imageSearchTerm,
           images: [...action.images],
-          pagination: {
-            ...action.pagination
+          imagePagination: {
+            ...action.imagePagination
           }
         };
       } else {
         return {
           ...state,
           images: [...state.images, ...action.images],
-          pagination: {
-            ...state.pagination,
-            ...action.pagination
+          imagePagination: {
+            ...state.imagePagination,
+            ...action.imagePagination
+          }
+        };
+      }
+    case actionTypes.SEARCH_USER:
+      if (state.userSearchTerm !== action.userSearchTerm) {
+        return {
+          userSearchTerm: action.userSearchTerm,
+          users: [...action.users],
+          userPagination: {
+            ...action.userPagination
+          }
+        };
+      } else {
+        return {
+          ...state,
+          users: [...state.users, ...action.users],
+          userPagination: {
+            ...state.userPagination,
+            ...action.userPagination
           }
         };
       }

@@ -97,3 +97,29 @@ exports.getUserLikedImages = async (req, res) => {
     res.status(500).send();
   }
 };
+
+exports.searchUsers = async (req, res) => {
+  try {
+    const query = new RegExp(req.query.q, 'i');
+    const page = +(req.query.page || 1);
+    const size = +(req.query.size || 20);
+    if (!page || !size || page <= 0 || size <= 0) {
+      return res.status(400).send('invalid page or size number');
+    }
+
+    const skip = size * (page - 1);
+
+    const user = await User.find(
+      { $text: { $search: query } },
+      { name: 1, profilePic: 1, score: { $meta: 'textScore' } }
+    )
+      .sort({ score: { $meta: 'textScore' } })
+      .skip(skip)
+      .limit(size);
+
+    res.send(user);
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+};

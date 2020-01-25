@@ -1,0 +1,29 @@
+.GridContainer {
+  margin: 5rem 1rem 1rem 1rem;
+}
+
+.MyMasonryGrid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: -1rem; /* gutter size offset */
+  width: auto;
+}
+.MyMasonryGridColumn {
+  padding-left: 1rem; /* gutter size */
+  background-clip: padding-box;
+}
+
+.MyMasonryGridColumn > div {
+  margin-bottom: 1rem;
+}
+
+.NoContent {
+  margin-top: 5rem;
+  height: 20rem;
+  text-align: center;
+}
+
+.NoContent img {
+  height: 100%;
+}

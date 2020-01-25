@@ -12,4 +12,6 @@ router.get('/:id/images', usersController.getUserImages);
 
 router.get('/:id/likes', usersController.getUserLikedImages);
 
+router.get('/', usersController.searchUsers);
+
 module.exports = router;
