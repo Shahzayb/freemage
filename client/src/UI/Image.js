@@ -7,14 +7,17 @@ const Temp = props => {
       style={{ width: '100%' }}
       cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}
       publicId={props.publicId}
-      dpr="auto"
       responsive
-      width="auto"
-      crop="scale"
       responsiveUseBreakpoints="true"
       alt={props.alt}
     >
-      <Transformation quality="auto" fetchFormat="auto" />
+      <Transformation
+        crop="scale"
+        width="auto"
+        dpr="auto"
+        quality="auto"
+        fetchFormat="auto"
+      />
     </Image>
   );
 };

@@ -15,8 +15,11 @@ const MobileSearch = ({ history }) => {
 
   const head = (
     <Helmet>
-      <title>Freemage - Search image</title>
-      <meta name="description" content="Search any image by their tags" />
+      <title>Freemage - Search image or user</title>
+      <meta
+        name="description"
+        content="Search image by their tags or users by their names"
+      />
     </Helmet>
   );
   return (
@@ -29,7 +32,7 @@ const MobileSearch = ({ history }) => {
             name="search"
             type="text"
             className={css.SearchText}
-            placeholder="Search photos"
+            placeholder="Search photos / users"
           />
         </form>
       </div>

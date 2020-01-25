@@ -31,7 +31,7 @@ class Navbar extends React.Component {
         </NavLink>
 
         <NavLink to="/mobile-search" className={css.Mobile}>
-          <Search title="search photos by tags" />
+          <Search title="search photos by tags or users by their names" />
         </NavLink>
 
         <div className={`${css.SearchBar} ${css.BigScreen}`}>
@@ -41,7 +41,7 @@ class Navbar extends React.Component {
               name="search"
               type="text"
               className={css.SearchText}
-              placeholder="Search photos"
+              placeholder="Search photos or users"
             />
           </form>
         </div>

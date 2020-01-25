@@ -3,14 +3,7 @@ import { Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroller';
 import Spinner from '../../UI/Spinner';
 import sadFaceIcon from '../../assets/images/sad-face.png';
-import Masonry from 'react-masonry-css';
 import css from './UserList.module.css';
-
-const breakpointColumnsObj = {
-  default: 3,
-  992: 2,
-  768: 1
-};
 
 export class UserList extends Component {
   loadMore(page) {
@@ -44,27 +37,22 @@ export class UserList extends Component {
           </div>
         }
       >
-        <div className={css.GridContainer}>
-          <Masonry
-            breakpointCols={breakpointColumnsObj}
-            className={css.MyMasonryGrid}
-            columnClassName={css.MyMasonryGridColumn}
-          >
-            {this.props.users.map(obj => (
-              <div key={obj._id}>
-                <Link
-                  to={{
-                    pathname: `/users/${obj._id}`
-                  }}
-                >
-                  <div>
-                    <img alt={obj.name} src={obj.profilePic} />
-                    <p>{obj.name}</p>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </Masonry>
+        <div className={css.UserGrid}>
+          {this.props.users.map(obj => (
+            <div className={css.UserGridItem} key={obj._id}>
+              <Link
+                to={{
+                  pathname: `/users/${obj._id}`
+                }}
+                className={css.Link}
+              >
+                <div>
+                  <img alt={obj.name} src={obj.profilePic} />
+                  <p>{obj.name}</p>
+                </div>
+              </Link>
+            </div>
+          ))}
         </div>
       </InfiniteScroll>
     );

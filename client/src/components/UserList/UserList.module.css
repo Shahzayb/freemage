@@ -1,29 +1,29 @@
-.GridContainer {
-  margin: 5rem 1rem 1rem 1rem;
+.UserGrid {
+  margin-top: 3rem;
+  display: grid;
+  grid-gap: 2rem;
+  justify-items: center;
+  align-items: center;
+  justify-content: space-evenly;
+  align-content: center;
+  /* grid-auto-flow: column; */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
-.MyMasonryGrid {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-left: -1rem; /* gutter size offset */
-  width: auto;
-}
-.MyMasonryGridColumn {
-  padding-left: 1rem; /* gutter size */
-  background-clip: padding-box;
-}
-
-.MyMasonryGridColumn > div {
-  margin-bottom: 1rem;
-}
-
-.NoContent {
-  margin-top: 5rem;
-  height: 20rem;
+.UserGridItem {
   text-align: center;
+  width: 15rem;
+  height: 15rem;
 }
 
-.NoContent img {
-  height: 100%;
+.Link {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: var(--color-text-light-grey);
+  transition: color 0.3s ease-in-out;
+}
+
+.Link:hover,
+.Link:focus {
+  color: var(--color-text-dark-grey);
 }
