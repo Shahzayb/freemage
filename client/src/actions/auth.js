@@ -17,13 +17,12 @@ export const ensureLogin = () => async dispatch => {
       const userId = res.data._id;
       const profilePic = res.data.profilePic;
       const isLoggedIn = true;
-      const userStreamToken = res.data.userStreamToken;
 
       GoogleAnalytics.set({ userId });
 
       dispatch({
         type: actionTypes.LOGIN_SUCCESS,
-        payload: { userId, profilePic, isLoggedIn, token, userStreamToken }
+        payload: { userId, profilePic, isLoggedIn, token }
       });
     } else {
       delete axios.defaults.headers.common['Authorization'];
@@ -60,7 +59,6 @@ export const loginUser = grantCode => async dispatch => {
     const profilePic = res.data.user.profilePic;
     const isLoggedIn = true;
     const token = res.data.token;
-    const userStreamToken = res.data.userStreamToken;
 
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -70,7 +68,7 @@ export const loginUser = grantCode => async dispatch => {
 
     dispatch({
       type: actionTypes.LOGIN_SUCCESS,
-      payload: { userId, profilePic, isLoggedIn, token, userStreamToken }
+      payload: { userId, profilePic, isLoggedIn, token }
     });
   } catch (error) {
     console.error(error);

@@ -14,4 +14,6 @@ router.get('/:id/likes', usersController.getUserLikedImages);
 
 router.get('/', usersController.searchUsers);
 
+router.patch('/', auth, usersController.updateAccount);
+
 module.exports = router;

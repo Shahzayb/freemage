@@ -6,7 +6,8 @@ mongoose
   .connect(DB_URL, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
   })
   .catch(err => {
     console.error("couldn't connect to the database", err);

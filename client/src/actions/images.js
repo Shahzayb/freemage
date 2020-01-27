@@ -89,6 +89,10 @@ export const deleteImage = imageId => async dispatch => {
       type: actionTypes.DELETE_IMAGE,
       imageId
     });
+    dispatch({
+      type: actionTypes.RESET_USER_IMAGES,
+      imageId
+    });
   } catch (e) {
     console.error(e);
   }

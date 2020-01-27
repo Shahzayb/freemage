@@ -10,7 +10,8 @@
     ],
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "/__tests__/db.js"
+      "/__tests__/db.js",
+      "/client/"
     ]
   },
   "scripts": {

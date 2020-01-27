@@ -16,6 +16,8 @@ const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.RESET_USER:
+      return initialState;
     case actionTypes.FETCH_USER:
       return {
         ...state,
@@ -83,26 +85,29 @@ export default (state = initialState, action) => {
           }
         }
       };
-    // case actionTypes.RESET_USER_IMAGES:
-    //   return {
-    //     ...state,
-    //     [action.userId]: {
-    //       ...state[action.userId],
-    //       imagesPage: {
-    //         images: [],
-    //         pagination: {
-    //           curPage: 0,
-    //           hasMore: true
-    //         }
-    //       },
-    //       likesPage: {
-    //         images: [...state[action.userId].likesPage.images],
-    //         pagination: {
-    //           ...state[action.userId].likesPage.pagination
-    //         }
-    //       }
-    //     }
-    //   };
+    case actionTypes.RESET_USER_IMAGES:
+      if (!state[action.userId]) {
+        return state;
+      }
+      return {
+        ...state,
+        [action.userId]: {
+          ...state[action.userId],
+          likesPage: {
+            likes: [...state[action.userId].likesPage.likes],
+            pagination: {
+              ...state[action.userId].likesPage.pagination
+            }
+          },
+          imagesPage: {
+            images: [],
+            pagination: {
+              curPage: 0,
+              hasMore: true
+            }
+          }
+        }
+      };
     case actionTypes.RESET_USER_LIKES:
       if (!state[action.userId]) {
         return state;
