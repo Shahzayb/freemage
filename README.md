@@ -40,25 +40,31 @@ cd client && npm install
 
 4. Here is the list of all env variables you have to provide.
 
-**inside dev.env:**
-`CLOUDINARY_CLOUD_NAME`
-`CLOUDINARY_API_KEY`
-`CLOUDINARY_API_SECRET`
+**inside dev.env:** 
 
-`CLIENT_ID` | a google oauth client id.
-`CLIENT_SECRET` | a google oauth lib client secret
+`CLOUDINARY_CLOUD_NAME=value` 
 
-`DB_URL` | your database uri
+`CLOUDINARY_API_KEY=value` 
 
-`JWT_SECRET` | a json web token secret
+`CLOUDINARY_API_SECRET=value` 
+
+
+`CLIENT_ID=value` | a google oauth client id.
+`CLIENT_SECRET=value` | a google oauth lib client secret
+
+`DB_URL=value` | your database uri
+
+`JWT_SECRET=value` | a json web token secret
 
 
 **inside .env.local:**
+ 
+`REACT_APP_CLOUDINARY_API_KEY=value` 
 
-`REACT_APP_CLOUDINARY_API_KEY`
-`REACT_APP_CLOUDINARY_CLOUD_NAME`
+`REACT_APP_CLOUDINARY_CLOUD_NAME=value` 
 
-`REACT_APP_CLIENT_ID` | a google oauth client id
+
+`REACT_APP_CLIENT_ID=value` | a google oauth client id
 
 **note:** please create separate project of google oauth for development or production
 
