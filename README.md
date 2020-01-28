@@ -12,85 +12,83 @@ This project uses these 3rd party services:
 - [Cloudinary](https://cloudinary.com/)
 - [Google Analytics](https://analytics.google.com/analytics/web/)
 - [Google OAuth](https://console.developers.google.com/)
+- [Google Account](https://account.google.com/)
 
 Note: You have to create account in these services to use this project.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+Note: I have a tutorial on [Google OAuth](https://github.com/Shahzayb/mern-google-login) 
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+1. Clone the project and install dependencies
 
 ```
-Give the example
+git clone https://github.com/Shahzayb/freemage.git
+```
+```
+cd freemage
+```
+```
+npm install
+```
+```
+cd client && npm install
 ```
 
-And repeat
+2. Create all third party services accounts mentioned above. I'm assuming you know about these services. If not, then there are many good tutorials on these services.
 
-```
-until finished
-```
+3. inside `freemage/config` folder, create `dev.env` file. And in `freemage/client`, create `local.env` file.
 
-End with an example of getting some data out of the system or using it for a little demo
+4. Here is the list of all env variables you have to provide.
+
+**inside dev.env:**
+`CLOUDINARY_CLOUD_NAME`
+`CLOUDINARY_API_KEY`
+`CLOUDINARY_API_SECRET`
+
+`CLIENT_ID` | a google oauth client id.
+`CLIENT_SECRET` | a google oauth lib client secret
+
+`DB_URL` | your database uri
+
+`JWT_SECRET` | a json web token secret
+
+
+**inside .env.local:**
+
+`REACT_APP_CLOUDINARY_API_KEY`
+`REACT_APP_CLOUDINARY_CLOUD_NAME`
+
+`REACT_APP_CLIENT_ID` | a google oauth client id
+
+**note:** please create separate project of google oauth for development or production
+
+`SKIP_PREFLIGHT_CHECK=true` | to avoid jest compatibility errors
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+inside the root of the project run:
 ```
-Give an example
+npm run test
 ```
 
-### And coding style tests
 
-Explain what these tests test and why
 
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+* [Express.js](http://expressjs.com/)
+* [Mongoose](https://mongoosejs.com/)
+* [NPM](https://www.npmjs.com/)
+* [Create React App](https://create-react-app.dev/)
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+For the versions available, see the [tags on this repository](https://github.com/shahzayb/freemage/tags). 
 
-## Authors
+## Author
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Shahzaib Sarwar**  - [shahzayb](https://github.com/shahzayb)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
