@@ -14,7 +14,8 @@ This project uses these 3rd party services:
 - [Google OAuth](https://console.developers.google.com/)
 - [Google Account](https://account.google.com/)
 
-Note: You have to create account in these services to use this project.
+Note: You have to create account in these services to use this project. 
+
 Note: I have a tutorial on [Google OAuth](https://github.com/Shahzayb/mern-google-login) 
 
 ### Installing
