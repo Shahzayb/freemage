@@ -9,15 +9,16 @@ const Temp = props => {
       publicId={props.publicId}
       responsive
       responsiveUseBreakpoints="true"
+      client_hints="true"
       alt={props.alt}
+      flags="progressive"
+      crop="scale"
+      width="auto"
+      dpr="auto"
+      quality="auto"
+      fetchFormat="auto"
     >
-      <Transformation
-        crop="scale"
-        width="auto"
-        dpr="auto"
-        quality="auto"
-        fetchFormat="auto"
-      />
+      {/* <Transformation /> */}
     </Image>
   );
 };

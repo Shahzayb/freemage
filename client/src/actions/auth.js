@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 import GoogleAnalytics from 'react-ga';
 import * as actionTypes from '../actions/types';
 import axios from '../lib/axios';
+import { createWidget } from '../lib/cloudinary';
 
 export const ensureLogin = () => async dispatch => {
   try {
@@ -24,6 +25,7 @@ export const ensureLogin = () => async dispatch => {
         type: actionTypes.LOGIN_SUCCESS,
         payload: { userId, profilePic, isLoggedIn, token }
       });
+      createWidget(userId, token);
     } else {
       delete axios.defaults.headers.common['Authorization'];
       dispatch({
@@ -70,6 +72,7 @@ export const loginUser = grantCode => async dispatch => {
       type: actionTypes.LOGIN_SUCCESS,
       payload: { userId, profilePic, isLoggedIn, token }
     });
+    createWidget(userId, token);
   } catch (error) {
     console.error(error);
 

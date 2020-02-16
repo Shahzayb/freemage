@@ -9,12 +9,7 @@ export class Startup extends Component {
   }
 
   render() {
-    return (
-      <>
-        {this.props.loading ? <Loading /> : null}
-        {this.props.children}
-      </>
-    );
+    return this.props.loading ? <Loading /> : this.props.children;
   }
 }
 
