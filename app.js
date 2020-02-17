@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 const compression = require('compression');
+const sslRedirect = require('heroku-ssl-redirect');
 
 const app = express();
 
@@ -31,6 +32,8 @@ const authRouter = require('./routes/auth.js');
 const usersRouter = require('./routes/users.js');
 const cloudinaryRouter = require('./routes/cloudinary.js');
 
+// enable ssl redirect in production
+app.use(sslRedirect());
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
