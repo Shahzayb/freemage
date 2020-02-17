@@ -46,7 +46,7 @@ describe('/api/users routes tests', () => {
 
     test('/api/users/:id - get existing user by id', async done => {
       const res = await req.get('/api/users/' + user._id).expect(200);
-      console.log(res.body);
+
       expect(res.body._id.toString()).toEqual(user._id.toString());
       done();
     });

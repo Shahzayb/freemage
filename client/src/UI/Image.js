@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Transformation } from 'cloudinary-react';
+import { Image } from 'cloudinary-react';
 
 const Temp = props => {
   return (
@@ -17,9 +17,7 @@ const Temp = props => {
       dpr="auto"
       quality="auto"
       fetchFormat="auto"
-    >
-      {/* <Transformation /> */}
-    </Image>
+    ></Image>
   );
 };
 

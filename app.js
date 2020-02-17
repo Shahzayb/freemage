@@ -3,13 +3,19 @@ const logger = require('morgan');
 const cors = require('cors');
 const compression = require('compression');
 
+const app = express();
+
+const env = app.get('env');
+
+console.log('env:', env);
+
 /**
  * Custom .env cofiguration
  */
-if (process.env.NODE_ENV !== 'production') {
+if (env !== 'production') {
   const path = require('path');
   const config = {};
-  if (process.env.NODE_ENV === 'test') {
+  if (env === 'test') {
     config.path = path.join(__dirname, '/config/test.env');
   } else {
     config.path = path.join(__dirname, '/config/dev.env');
@@ -17,15 +23,13 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config(config);
 }
 
-if (process.env.NODE_ENV !== 'test') {
+if (env !== 'test') {
   require('./data/index'); // connecting to database
 }
 const imagesRoute = require('./routes/images.js');
 const authRouter = require('./routes/auth.js');
 const usersRouter = require('./routes/users.js');
 const cloudinaryRouter = require('./routes/cloudinary.js');
-
-const app = express();
 
 app.use(cors());
 app.use(logger('dev'));
@@ -37,7 +41,7 @@ app.use('/api/auth/', authRouter);
 app.use('/api/users/', usersRouter);
 app.use('/api/cloudinary/', cloudinaryRouter);
 
-if (process.env.NODE_ENV === 'production') {
+if (env === 'production') {
   const path = require('path');
 
   app.use(express.static(path.join(__dirname, '/client/build')));
@@ -47,7 +51,7 @@ if (process.env.NODE_ENV === 'production') {
   );
 }
 
-if (process.env.NODE_ENV !== 'test') {
+if (env !== 'test') {
   const PORT = process.env.PORT || '5000';
 
   app.listen(PORT, () => console.log(`server started on port ${PORT}`));
