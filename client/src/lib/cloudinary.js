@@ -1,10 +1,11 @@
 import GoogleAnalytics from 'react-ga';
 import { toast } from 'react-toastify';
+import { ajax } from 'jquery';
 import history from './history';
 
 export const createWidget = (userId, token) => {
   const generateSignature = (callback, params_to_sign) => {
-    window.$.ajax({
+    ajax({
       url:
         (process.env.NODE_ENV === 'development'
           ? 'http://localhost:5000/'
