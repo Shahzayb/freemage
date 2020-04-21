@@ -18,15 +18,15 @@ export class Upload extends Component {
         <meta name="description" content="Upload your work" />
       </Helmet>
     ) : (
-      <Redirect to="/" />
+      <Redirect to="/login" />
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isLoggedIn: state.auth.isLoggedIn,
   userId: state.auth.userId,
-  token: state.auth.token
+  token: state.auth.token,
 });
 
 export default connect(mapStateToProps)(Upload);

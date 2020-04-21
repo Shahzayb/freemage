@@ -62,7 +62,7 @@
   },
   "homepage": "https://github.com/Shahzayb/freemage#readme",
   "engines": {
-    "node": "12.8.0",
-    "npm": "6.10.2"
+    "node": "12.x",
+    "npm": "6.x"
   }
 }

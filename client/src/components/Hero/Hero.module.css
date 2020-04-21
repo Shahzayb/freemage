@@ -2,8 +2,6 @@
   min-height: 400px;
   height: 60vh;
   width: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url('https://res.cloudinary.com/shahzayb/image/upload/f_auto,fl_progressive,q_1/v1575756923/freemage/5de023282b6ffb282823c1eb/fgbwpsymxwkqblh9fmop.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -22,7 +20,25 @@
   text-shadow: 1px 1px 3px rgb(187, 187, 187);
 }
 
-@media only screen and (max-width: 767px) {
+@media screen and (min-width: 1301px) {
+  .Hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      url('https://res.cloudinary.com/shahzayb/image/upload/c_scale,dpr_auto,f_auto,fl_progressive,q_auto,w_1500/v1575756923/freemage/hero');
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .Hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      url('https://res.cloudinary.com/shahzayb/image/upload/c_scale,dpr_auto,f_auto,fl_progressive,q_auto,w_1200/v1575756923/freemage/hero');
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      url('https://res.cloudinary.com/shahzayb/image/upload/c_scale,dpr_auto,f_auto,fl_progressive,q_auto,w_767/v1575756923/freemage/hero');
+  }
   .LandingText {
     font-size: 3rem;
     width: 30rem;
